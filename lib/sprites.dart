@@ -117,6 +117,47 @@ class PokemonAllSprites extends PokemonSprites {
 
   /// Sprites for this pokemon on different game versions
   final PokemonSpritesVersions? versions;
+
+  factory PokemonAllSprites.fromJson(Map<String, dynamic> json) => PokemonAllSprites(
+        rawData: json,
+        frontDefault: json['front_default'],
+        frontShiny: json['front_shiny'],
+        frontFemale: json['front_female'],
+        frontShinyFemale: json['front_shiny_female'],
+        backDefault: json['back_default'],
+        backShiny: json['back_shiny'],
+        backFemale: json['back_female'],
+        backShinyFemale: json['back_shiny_female'],
+        frontTransparent: json['front_transparent'],
+        backTransparent: json['back_transparent'],
+        frontGray: json['front_gray'],
+        backGray: json['back_gray'],
+        other: json['other'] != null ? PokemonSpritesOther.fromJson(json['other']) : null,
+        versions: json['versions'] != null ? PokemonSpritesVersions.fromJson(json['versions']) : null,
+      );
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'front_default': frontDefault,
+        'front_shiny': frontShiny,
+        'front_female': frontFemale,
+        'front_shiny_female': frontShinyFemale,
+        'back_default': backDefault,
+        'back_shiny': backShiny,
+        'back_female': backFemale,
+        'back_shiny_female': backShinyFemale,
+        'front_transparent': frontTransparent,
+        'back_transparent': backTransparent,
+        'front_gray': frontGray,
+        'back_gray': backGray,
+        'other': other?.toJson(),
+        'versions': versions?.toJson(),
+      };
+
+  @override
+  String toString() {
+    return 'PokemonAllSprites(frontDefault: $frontDefault, frontShiny: $frontShiny, frontFemale: $frontFemale, frontShinyFemale: $frontShinyFemale, backDefault: $backDefault, backShiny: $backShiny, backFemale: $backFemale, backShinyFemale: $backShinyFemale, frontTransparent: $frontTransparent, backTransparent: $backTransparent, frontGray: $frontGray, backGray: $backGray, other: $other, versions: $versions)';
+  }
 }
 
 class PokemonSpritesOther {

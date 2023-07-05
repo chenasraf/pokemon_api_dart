@@ -52,7 +52,7 @@ class Pokemon with ResourceBase {
   final List<PokemonTypePast> pastTypes;
 
   /// Sprites of the pokemon
-  final PokemonSprites sprites;
+  final PokemonAllSprites sprites;
 
   /// The species this pokemon belongs to
   final NamedAPIResource species;
@@ -106,7 +106,7 @@ class Pokemon with ResourceBase {
           {'name': 'location-area-encounters', 'url': json['location_area_encounters']}),
       moves: json['moves'].map<PokemonMove>((e) => PokemonMove.fromJson(e)).toList(),
       pastTypes: json['past_types'].map<PokemonTypePast>((e) => PokemonTypePast.fromJson(e)).toList(),
-      sprites: PokemonSprites.fromJson(json['sprites']),
+      sprites: PokemonAllSprites.fromJson(json['sprites']),
       species: NamedAPIResource.fromJson(json['species']),
       stats: json['stats'],
       types: json['types'],
