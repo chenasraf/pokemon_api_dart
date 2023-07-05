@@ -9,12 +9,12 @@ import 'package:pokemon_api/pokemon_api.dart';
   print('\n');
   print(pokemonList[0]);
 
-  final bulbasaur = await pokemonList[0].get();
+  final fuecoco = await PokemonAPIClient.instance.getPokemonByNameOrId('fuecoco');
 
   print('\n');
-  print(bulbasaur);
+  print(fuecoco);
 
-  final encounters = await bulbasaur.locationAreaEncounters.get();
+  final encounters = await fuecoco.locationAreaEncounters.get();
 
   print('\n');
   print(encounters);
@@ -34,7 +34,7 @@ import 'package:pokemon_api/pokemon_api.dart';
   print('\n');
   print(region);
 
-  final species = await bulbasaur.species.get();
+  final species = await fuecoco.species.get();
 
   print('\n');
   print(species);

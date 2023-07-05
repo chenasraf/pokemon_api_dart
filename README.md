@@ -26,7 +26,7 @@ final api = PokemonAPIClient.instance;
 
 ## Usage
 
-You can see [examples/main.dart] for more examples.
+You can see <examples/main.dart> for more examples.
 
 ```dart
 // get the pokemon list
