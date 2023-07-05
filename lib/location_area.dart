@@ -25,16 +25,12 @@ class PokemonLocationArea with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'location_area': locationArea.toJson(),
       'version_details': versionDetails.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'LocationAreaEncounter{locationArea: $locationArea, versionDetails: $versionDetails}';
   }
 }
 
@@ -68,6 +64,7 @@ class LocationArea with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'game_index': gameIndex,
@@ -75,11 +72,6 @@ class LocationArea with ResourceBase {
       'names': names.map((e) => e.toJson()).toList(),
       'pokemon_encounters': pokemonEncounters.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'LocationArea{gameIndex: $gameIndex, location: $location, names: $names, pokemonEncounters: $pokemonEncounters}';
   }
 }
 
@@ -95,11 +87,6 @@ class PokemonLocationAreaResource extends NamedAPIResource<List<PokemonLocationA
 
   @override
   List<PokemonLocationArea> mapper(data) => (data as List).map((e) => PokemonLocationArea.fromJson(e)).toList();
-
-  @override
-  String toString() {
-    return 'PokemonLocationAreaResource{rawData: $rawData, name: $name, url: $url}';
-  }
 }
 
 class LocationAreaResource extends NamedAPIResource<LocationArea> {
@@ -114,10 +101,5 @@ class LocationAreaResource extends NamedAPIResource<LocationArea> {
 
   @override
   LocationArea mapper(data) => LocationArea.fromJson(data);
-
-  @override
-  String toString() {
-    return 'LocationAreaResource{rawData: $rawData, name: $name, url: $url}';
-  }
 }
 

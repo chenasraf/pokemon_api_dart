@@ -25,16 +25,12 @@ class PokemonEncounter with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'pokemon': pokemon.toJson(),
       'version_details': versionDetails.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'PokemonEncounter{pokemon: $pokemon, versionDetails: $versionDetails}';
   }
 }
 
@@ -67,6 +63,7 @@ class Encounter with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'chance': chance,
@@ -75,11 +72,6 @@ class Encounter with ResourceBase {
       'method': method.toJson(),
       'min_level': minLevel,
     };
-  }
-
-  @override
-  String toString() {
-    return 'EncounterDetail{chance: $chance, conditionValues: $conditionValues, maxLevel: $maxLevel, method: $method, minLevel: $minLevel}';
   }
 }
 
@@ -112,17 +104,13 @@ class VersionEncounterDetail with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'max_chance': maxChance,
       'version': version.toJson(),
       'encounter_details': encounterDetails.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'LocationAreaVersionDetails{maxChance: $maxChance, version: $version, encounterDetails: $encounterDetails}';
   }
 }
 
@@ -149,16 +137,12 @@ class EncounterMethod with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'names': names.map((e) => e.toJson()).toList(),
       'order': order.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'EncounterMethod{names: $names, order: $order}';
   }
 }
 
@@ -186,16 +170,12 @@ class EncounterMethodRate with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'encounter_method': encounterMethod.toJson(),
       'version_details': versionDetails.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'EncounterMethodRate{encounterMethod: $encounterMethod, versionDetails: $versionDetails}';
   }
 }
 
@@ -222,15 +202,12 @@ class EncounterVersionDetails with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'rate': rate,
       'version': version.toJson(),
     };
   }
-
-  @override
-  String toString() {
-    return 'EncounterVersionDetails{rate: $rate, version: $version}';
-  }
 }
+

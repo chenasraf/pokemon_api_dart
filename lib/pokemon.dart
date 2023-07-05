@@ -22,7 +22,7 @@ class Pokemon with ResourceBase {
   final int weight;
 
   /// Base experience gained when defeating this pokemon
-  final int baseExperience;
+  final int? baseExperience;
 
   /// Whether this is the default form of this pokemon
   final bool isDefault;
@@ -113,6 +113,7 @@ class Pokemon with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'name': name,
@@ -134,11 +135,6 @@ class Pokemon with ResourceBase {
       'stats': stats,
       'types': types,
     };
-  }
-
-  @override
-  String toString() {
-    return 'Pokemon{name: $name, id: $id, height: $height, weight: $weight, isDefault: $isDefault, order: $order, abilities: $abilities, baseExperience: $baseExperience, forms: $forms, gameIndices: $gameIndices, heldItems: $heldItems, locationAreaEncounters: $locationAreaEncounters, moves: $moves, pastTypes: $pastTypes, sprites: $sprites, species: $species, stats: $stats, types: $types}';
   }
 }
 

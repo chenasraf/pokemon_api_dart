@@ -22,16 +22,12 @@ class PokemonMove with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'move': move.toJson(),
       'version_group_details': versionGroupDetails.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'PokemonMove{move: $move, versionGroupDetails: $versionGroupDetails}';
   }
 }
 
@@ -58,17 +54,13 @@ class PokemonMoveVersion with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'version_group': versionGroup.toJson(),
       'level_learned_at': levelLearnedAt,
       'move_learn_method': moveLearnMethod.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'PokemonMoveVersion{versionGroup: $versionGroup, levelLearnedAt: $levelLearnedAt, moveLearnMethod: $moveLearnMethod}';
   }
 }
 

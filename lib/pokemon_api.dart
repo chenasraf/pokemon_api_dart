@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 
 import 'cache.dart';
 import 'pokemon.dart';
+import 'pokemon_species.dart';
 
 export "ability.dart";
 export "base.dart";
@@ -51,10 +52,22 @@ class PokemonAPIClient {
         onMiss: (data) => (data['results'] as List<dynamic>).map((e) => PokemonResource.fromJson(e)).toList(),
       );
 
+  /// Get a list of Pokemon Species
+  Future<List<PokemonSpeciesResource>> getPokemonSpeciesList([int limit = 10]) async => cache.tryGet(
+        '$baseUrl/pokemon-species?limit=$limit',
+        onMiss: (data) => (data['results'] as List<dynamic>).map((e) => PokemonSpeciesResource.fromJson(e)).toList(),
+      );
+
   /// Get a single Pokemon by name or id
-  Future<Pokemon> getPokemonByNameOrId(String nameOrId) async => cache.tryGet(
+  Future<Pokemon> getPokemon(String nameOrId) async => cache.tryGet(
         '$baseUrl/pokemon/$nameOrId',
         onMiss: (data) => Pokemon.fromJson(data),
+      );
+
+  /// Get a single Pokemon Species by name or id
+  Future<PokemonSpecies> getPokemonSpecies(String nameOrId) async => cache.tryGet(
+        '$baseUrl/pokemon-species/$nameOrId',
+        onMiss: (data) => PokemonSpecies.fromJson(data),
       );
 }
 

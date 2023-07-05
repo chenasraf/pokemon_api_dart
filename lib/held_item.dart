@@ -20,15 +20,11 @@ class PokemonHeldItem with ResourceBase {
             List<PokemonHeldItemVersion>.from(json["version_details"].map((x) => PokemonHeldItemVersion.fromJson(x))),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "item": item.toJson(),
         "version_details": List<dynamic>.from(versionDetails.map((x) => x.toJson())),
       };
-
-  @override
-  String toString() {
-    return 'PokemonHeldItem{item: $item, versionDetails: $versionDetails}';
-  }
 }
 
 class PokemonHeldItemVersion with ResourceBase {
@@ -49,14 +45,10 @@ class PokemonHeldItemVersion with ResourceBase {
         rarity: json["rarity"],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "version": version.toJson(),
         "rarity": rarity,
       };
-
-  @override
-  String toString() {
-    return 'PokemonHeldItemVersion{version: $version, rarity: $rarity}';
-  }
 }
 

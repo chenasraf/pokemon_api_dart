@@ -23,13 +23,10 @@ class GenerationGameIndex with ResourceBase {
         generation: NamedAPIResource.fromJson(json['generation']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'game_index': gameIndex,
         'generation': generation.toJson(),
       };
-
-  @override
-  String toString() {
-    return 'GenerationGameIndex{gameIndex: $gameIndex, generation: $generation}';
-  }
 }
+

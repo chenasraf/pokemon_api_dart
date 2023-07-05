@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-import 'base.dart';
 import 'pokemon_api.dart';
 
 class NamedAPIResource<T> with ResourceBase {
@@ -23,16 +22,12 @@ class NamedAPIResource<T> with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'name': name,
       'url': url,
     };
-  }
-
-  @override
-  String toString() {
-    return 'NamedAPIResource{name: $name, url: $url}';
   }
 
   T mapper(dynamic data) {

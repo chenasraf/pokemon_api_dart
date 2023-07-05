@@ -21,16 +21,12 @@ class VersionGameIndex with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'game_index': gameIndex,
       'version': version.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'VersionGameIndex{gameIndex: $gameIndex, version: $version}';
   }
 }
 

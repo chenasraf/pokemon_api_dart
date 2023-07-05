@@ -72,6 +72,7 @@ class PokemonSprites with ResourceBase {
         backGray: json['back_gray'],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'front_default': frontDefault,
         'front_shiny': frontShiny,
@@ -86,11 +87,6 @@ class PokemonSprites with ResourceBase {
         'front_gray': frontGray,
         'back_gray': backGray,
       };
-
-  @override
-  String toString() {
-    return 'PokemonSprites(frontDefault: $frontDefault, frontShiny: $frontShiny, frontFemale: $frontFemale, frontShinyFemale: $frontShinyFemale, backDefault: $backDefault, backShiny: $backShiny, backFemale: $backFemale, backShinyFemale: $backShinyFemale, frontTransparent: $frontTransparent, backTransparent: $backTransparent, frontGray: $frontGray, backGray: $backGray)';
-  }
 }
 
 class PokemonAllSprites extends PokemonSprites {
@@ -153,11 +149,6 @@ class PokemonAllSprites extends PokemonSprites {
         'other': other?.toJson(),
         'versions': versions?.toJson(),
       };
-
-  @override
-  String toString() {
-    return 'PokemonAllSprites(frontDefault: $frontDefault, frontShiny: $frontShiny, frontFemale: $frontFemale, frontShinyFemale: $frontShinyFemale, backDefault: $backDefault, backShiny: $backShiny, backFemale: $backFemale, backShinyFemale: $backShinyFemale, frontTransparent: $frontTransparent, backTransparent: $backTransparent, frontGray: $frontGray, backGray: $backGray, other: $other, versions: $versions)';
-  }
 }
 
 class PokemonSpritesOther {
@@ -182,9 +173,6 @@ class PokemonSpritesOther {
         'official-artwork': officialArtwork.toJson(),
         'home': home.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesOther(dreamWorld: $dreamWorld, officialArtwork: $officialArtwork, home: $home)';
 }
 
 class PokemonSpritesVersions {
@@ -229,11 +217,6 @@ class PokemonSpritesVersions {
         'generation-vii': generation7.toJson(),
         'generation-viii': generation8.toJson(),
       };
-
-  @override
-  String toString() {
-    return 'PokemonSpritesVersions(generation1: $generation1, generation2: $generation2, generation3: $generation3, generation4: $generation4, generation5: $generation5, generation6: $generation6, generation7: $generation7, generation8: $generation8)';
-  }
 }
 
 class PokemonSpritesGeneration1 with ResourceBase {
@@ -255,13 +238,11 @@ class PokemonSpritesGeneration1 with ResourceBase {
         yellow: PokemonSprites.fromJson(json['yellow']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'red-blue': redBlue.toJson(),
         'yellow': yellow.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesGeneration1(redBlue: $redBlue, yellow: $yellow)';
 }
 
 class PokemonSpritesGeneration2 with ResourceBase {
@@ -286,14 +267,12 @@ class PokemonSpritesGeneration2 with ResourceBase {
         silver: PokemonSprites.fromJson(json['silver']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'crystal': crystal.toJson(),
         'gold': gold.toJson(),
         'silver': silver.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesGeneration2(crystal: $crystal, gold: $gold, silver: $silver)';
 }
 
 class PokemonSpritesGeneration3 with ResourceBase {
@@ -318,15 +297,12 @@ class PokemonSpritesGeneration3 with ResourceBase {
         rubySapphire: PokemonSprites.fromJson(json['ruby-sapphire']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'emerald': emerald.toJson(),
         'firered-leafgreen': fireredLeafgreen.toJson(),
         'ruby-sapphire': rubySapphire.toJson(),
       };
-
-  @override
-  String toString() =>
-      'PokemonSpritesGeneration3(emerald: $emerald, fireredLeafgreen: $fireredLeafgreen, rubySapphire: $rubySapphire)';
 }
 
 class PokemonSpritesGeneration4 with ResourceBase {
@@ -351,15 +327,12 @@ class PokemonSpritesGeneration4 with ResourceBase {
         platinum: PokemonSprites.fromJson(json['platinum']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'diamond-pearl': diamondPearl.toJson(),
         'heartgold-soulsilver': heartgoldSoulsilver.toJson(),
         'platinum': platinum.toJson(),
       };
-
-  @override
-  String toString() =>
-      'PokemonSpritesGeneration4(diamondPearl: $diamondPearl, heartgoldSoulsilver: $heartgoldSoulsilver, platinum: $platinum)';
 }
 
 class PokemonSpritesGeneration5 with ResourceBase {
@@ -378,12 +351,10 @@ class PokemonSpritesGeneration5 with ResourceBase {
         blackWhite: PokemonSprites.fromJson(json['black-white']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'black-white': blackWhite.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesGeneration5(blackWhite: $blackWhite)';
 }
 
 class PokemonSpritesGeneration6 with ResourceBase {
@@ -405,13 +376,11 @@ class PokemonSpritesGeneration6 with ResourceBase {
         xy: PokemonSprites.fromJson(json['x-y']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'omegaruby-alphasapphire': omegarubyAlphasapphire.toJson(),
         'x-y': xy.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesGeneration6(omegarubyAlphasapphire: $omegarubyAlphasapphire, xy: $xy)';
 }
 
 class PokemonSpritesGeneration7 with ResourceBase {
@@ -433,13 +402,11 @@ class PokemonSpritesGeneration7 with ResourceBase {
         ultraSunUltraMoon: PokemonSprites.fromJson(json['ultra-sun-ultra-moon']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'icons': icons.toJson(),
         'ultra-sun-ultra-moon': ultraSunUltraMoon.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesGeneration7(icons: $icons, ultraSunUltraMoon: $ultraSunUltraMoon)';
 }
 
 class PokemonSpritesGeneration8 with ResourceBase {
@@ -458,12 +425,10 @@ class PokemonSpritesGeneration8 with ResourceBase {
         icons: PokemonSprites.fromJson(json['icons']),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         'icons': icons.toJson(),
       };
-
-  @override
-  String toString() => 'PokemonSpritesGeneration8(icons: $icons)';
 }
 
 /*

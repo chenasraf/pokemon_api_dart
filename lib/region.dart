@@ -39,6 +39,7 @@ class Region with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -49,11 +50,6 @@ class Region with ResourceBase {
       'pokedexes': pokedexes.map((e) => e.toJson()).toList(),
       'version_groups': versionGroups.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'Region{id: $id, name: $name, locations: $locations, names: $names, mainGeneration: $mainGeneration, pokedexes: $pokedexes, versionGroups: $versionGroups}';
   }
 }
 
@@ -69,10 +65,5 @@ class RegionResource extends NamedAPIResource<Region> {
 
   @override
   Region mapper(data) => Region.fromJson(data);
-
-  @override
-  String toString() {
-    return 'RegionResource{rawData: $rawData, name: $name, url: $url}';
-  }
 }
 

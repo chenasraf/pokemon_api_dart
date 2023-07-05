@@ -9,12 +9,14 @@ import 'package:pokemon_api/pokemon_api.dart';
   print('\n');
   print(pokemonList[0]);
 
-  final fuecoco = await PokemonAPIClient.instance.getPokemonByNameOrId('fuecoco');
+  final fuecoco = await PokemonAPIClient.instance.getPokemon('fuecoco');
 
   print('\n');
   print(fuecoco);
 
-  final encounters = await fuecoco.locationAreaEncounters.get();
+  final bulbasaur = await PokemonAPIClient.instance.getPokemon('bulbasaur');
+
+  final encounters = await bulbasaur.locationAreaEncounters.get();
 
   print('\n');
   print(encounters);

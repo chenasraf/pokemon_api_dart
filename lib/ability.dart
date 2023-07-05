@@ -26,17 +26,13 @@ class PokemonAbility with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'is_hidden': isHidden,
       'slot': slot,
       'ability': ability.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'PokemonAbility{isHidden: $isHidden, slot: $slot, ability: $ability}';
   }
 }
 
@@ -83,6 +79,7 @@ class Ability with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -95,11 +92,6 @@ class Ability with ResourceBase {
       'flavor_text_entries': flavorTextEntries.map((e) => e.toJson()).toList(),
       'pokemon': pokemon.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'Ability{id: $id, name: $name, isMainSeries: $isMainSeries, generation: $generation, names: $names, effectEntries: $effectEntries, effectChanges: $effectChanges, flavorTextEntries: $flavorTextEntries, pokemon: $pokemon}';
   }
 }
 
@@ -127,17 +119,13 @@ class AbilityPokemon with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'is_hidden': isHidden,
       'slot': slot,
       'pokemon': pokemon.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'AbilityPokemon{isHidden: $isHidden, slot: $slot, pokemon: $pokemon}';
   }
 }
 
@@ -165,17 +153,13 @@ class AbilityFlavorText with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'flavor_text': flavorText,
       'language': language.toJson(),
       'version_group': versionGroup.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'AbilityFlavorText{flavorText: $flavorText, language: $language, versionGroup: $versionGroup}';
   }
 }
 
@@ -199,16 +183,12 @@ class AbilityEffectChange with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'effect_entries': effectEntries.map((e) => e.toJson()).toList(),
       'version_group': versionGroup.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'AbilityEffectChange{effectEntries: $effectEntries, versionGroup: $versionGroup}';
   }
 }
 
@@ -236,6 +216,7 @@ class VerboseEffect with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'effect': effect,
@@ -243,11 +224,5 @@ class VerboseEffect with ResourceBase {
       'language': language.toJson(),
     };
   }
-
-  @override
-  String toString() {
-    return 'VerboseEffect{effect: $effect, shortEffect: $shortEffect, language: $language}';
-  }
 }
-
 

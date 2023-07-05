@@ -21,16 +21,12 @@ class Name with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'name': name,
       'language': language.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'Name{name: $name, language: $language}';
   }
 }
 

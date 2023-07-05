@@ -1,4 +1,3 @@
-
 import 'base.dart';
 import 'generation_game_index.dart';
 import 'name.dart';
@@ -37,6 +36,7 @@ class Location with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -46,11 +46,6 @@ class Location with ResourceBase {
       'areas': areas.map((e) => e.toJson()).toList(),
       'game_indices': gameIndices.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'Location{id: $id, name: $name, names: $names, region: $region, areas: $areas, gameIndices: $gameIndices}';
   }
 }
 
@@ -66,9 +61,5 @@ class LocationResource extends NamedAPIResource<Location> {
 
   @override
   Location mapper(data) => Location.fromJson(data);
-
-  @override
-  String toString() {
-    return 'LocationResource{rawData: $rawData, name: $name, url: $url}';
-  }
 }
+

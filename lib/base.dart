@@ -9,5 +9,12 @@ mixin ResourceBase {
     final mapFn = mapper ?? (dynamic value) => value as T;
     return mapFn(await resource.get());
   }
+
+  @override
+  String toString() {
+    return '$runtimeType{${toJson()}}';
+  }
+
+  Map<String, dynamic> toJson();
 }
 

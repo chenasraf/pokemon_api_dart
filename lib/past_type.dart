@@ -21,16 +21,12 @@ class PokemonTypePast with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'generation': generation.toJson(),
       'types': types.map((e) => e.toJson()).toList(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'PokemonTypePast{generation: $generation, types: $types}';
   }
 }
 
@@ -55,16 +51,12 @@ class PokemonType with ResourceBase {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'slot': slot,
       'type': type.toJson(),
     };
-  }
-
-  @override
-  String toString() {
-    return 'PokemonType{slot: $slot, type: $type}';
   }
 }
 
