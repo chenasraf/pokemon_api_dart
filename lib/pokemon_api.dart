@@ -8,6 +8,25 @@ import 'package:dio/dio.dart';
 import 'cache.dart';
 import 'pokemon.dart';
 
+export "ability.dart";
+export "base.dart";
+export "cache.dart";
+export "encounter.dart";
+export "generation.dart";
+export "generation_game_index.dart";
+export "held_item.dart";
+export "location.dart";
+export "location_area.dart";
+export "move.dart";
+export "name.dart";
+export "named_api_resource.dart";
+export "past_type.dart";
+export "pokemon.dart";
+export "pokemon_api.dart";
+export "region.dart";
+export "sprites.dart";
+export "version_game_index.dart";
+
 /// The main API client to fetch Pokemon data.
 /// See [https://pokeapi.co/] for more information.
 class PokemonAPIClient {
@@ -21,7 +40,7 @@ class PokemonAPIClient {
   CacheManager get cache => _cache;
   setCache(CacheManager cache) => _cache = cache;
   Future<void> loadCache(Map<String, dynamic> cache) async => _cache.fill(cache);
-  Future<void> clearCache() async=> _cache.clear();
+  Future<void> clearCache() async => _cache.clear();
 
   static PokemonAPIClient instance = PokemonAPIClient();
   static void setInstance(PokemonAPIClient client) => instance = client;
@@ -37,6 +56,5 @@ class PokemonAPIClient {
         '$baseUrl/pokemon/$nameOrId',
         onMiss: (data) => Pokemon.fromJson(data),
       );
-
 }
 
