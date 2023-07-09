@@ -12,22 +12,22 @@ class PokemonSpecies with ResourceBase {
   @override
   final Map<String, dynamic> rawData;
 
-  final int baseHappiness;
+  final int? baseHappiness;
   final int captureRate;
-  final NamedAPIResource color;
+  final NamedAPIResource? color;
   final List<NamedAPIResource> eggGroups;
-  final NamedAPIResource evolutionChain;
+  final NamedAPIResource? evolutionChain;
   final NamedAPIResource? evolvesFromSpecies;
   final List<FlavorText> flavorTextEntries;
   final List<Description> formDescriptions;
   final bool formsSwitchable;
-  final int genderRate;
+  final int? genderRate;
   final List<Genus> genera;
   final NamedAPIResource generation;
   final NamedAPIResource growthRate;
   final NamedAPIResource? habitat;
   final bool hasGenderDifferences;
-  final int hatchCounter;
+  final int? hatchCounter;
   final int id;
   final bool isBaby;
   final bool isLegendary;
@@ -37,7 +37,7 @@ class PokemonSpecies with ResourceBase {
   final int order;
   final List<PalParkEncounterArea> palParkEncounters;
   final List<PokedexNumber> pokedexNumbers;
-  final NamedAPIResource shape;
+  final NamedAPIResource? shape;
   final List<PokemonSpeciesVariety> varieties;
 
   PokemonSpecies({
@@ -75,24 +75,29 @@ class PokemonSpecies with ResourceBase {
         rawData: json,
         baseHappiness: json['base_happiness'],
         captureRate: json['capture_rate'],
-        color: NamedAPIResource.fromJson(json['color'] ?? {}),
+        color: json['color'] != null && json['color'].isNotEmpty ? NamedAPIResource.fromJson(json['color']) : null,
         eggGroups: json['egg_groups'] != null
-            ? List<NamedAPIResource>.from(json['egg_groups'].map((x) => NamedAPIResource.fromJson(x ?? {})))
+            ? List<NamedAPIResource>.from(json['egg_groups'].map((x) => NamedAPIResource.fromJson(x)))
             : [],
-        evolutionChain: NamedAPIResource.fromJson(json['evolution_chain'] ?? {}),
-        evolvesFromSpecies: NamedAPIResource.fromJson(json['evolves_from_species'] ?? {}),
+        evolutionChain: json['evolution_chain'] != null && json['evolution_chain'].isNotEmpty
+            ? NamedAPIResource.fromJson({...json['evolution_chain'], 'name': 'evolution-chain'})
+            : null,
+        evolvesFromSpecies: json['evolves_from_species'] != null && json['evolves_from_species'].isNotEmpty
+            ? NamedAPIResource.fromJson(json['evolves_from_species'])
+            : null,
         flavorTextEntries: json['flavor_text_entries'] != null
-            ? List<FlavorText>.from(json['flavor_text_entries'].map((x) => FlavorText.fromJson(x ?? {})))
+            ? List<FlavorText>.from(json['flavor_text_entries'].map((x) => FlavorText.fromJson(x)))
             : [],
         formDescriptions: json['form_descriptions'] != null
-            ? List<Description>.from(json['form_descriptions'].map((x) => Description.fromJson(x ?? {})))
+            ? List<Description>.from(json['form_descriptions'].map((x) => Description.fromJson(x)))
             : [],
         formsSwitchable: json['forms_switchable'],
         genderRate: json['gender_rate'],
-        genera: json['genera'] != null ? List<Genus>.from(json['genera'].map((x) => Genus.fromJson(x ?? {}))) : [],
-        generation: NamedAPIResource.fromJson(json['generation'] ?? {}),
-        growthRate: NamedAPIResource.fromJson(json['growth_rate'] ?? {}),
-        habitat: NamedAPIResource.fromJson(json['habitat'] ?? {}),
+        genera: json['genera'] != null ? List<Genus>.from(json['genera'].map((x) => Genus.fromJson(x))) : [],
+        generation: NamedAPIResource.fromJson(json['generation']),
+        growthRate: NamedAPIResource.fromJson(json['growth_rate']),
+        habitat:
+            json['habitat'] != null && json['habitat'].isNotEmpty ? NamedAPIResource.fromJson(json['habitat']) : null,
         hasGenderDifferences: json['has_gender_differences'],
         hatchCounter: json['hatch_counter'],
         id: json['id'],
@@ -100,18 +105,17 @@ class PokemonSpecies with ResourceBase {
         isLegendary: json['is_legendary'],
         isMythical: json['is_mythical'],
         name: json['name'],
-        names: json['names'] != null ? List<Name>.from(json['names'].map((x) => Name.fromJson(x ?? {}))) : [],
+        names: json['names'] != null ? List<Name>.from(json['names'].map((x) => Name.fromJson(x))) : [],
         order: json['order'],
         palParkEncounters: json['pal_park_encounters'] != null
-            ? List<PalParkEncounterArea>.from(
-                json['pal_park_encounters'].map((x) => PalParkEncounterArea.fromJson(x ?? {})))
+            ? List<PalParkEncounterArea>.from(json['pal_park_encounters'].map((x) => PalParkEncounterArea.fromJson(x)))
             : [],
         pokedexNumbers: json['pokedex_numbers'] != null
-            ? List<PokedexNumber>.from(json['pokedex_numbers'].map((x) => PokedexNumber.fromJson(x ?? {})))
+            ? List<PokedexNumber>.from(json['pokedex_numbers'].map((x) => PokedexNumber.fromJson(x)))
             : [],
-        shape: NamedAPIResource.fromJson(json['shape'] ?? {}),
+        shape: json['shape'] != null && json['shape'].isNotEmpty ? NamedAPIResource.fromJson(json['shape']) : null,
         varieties: json['varieties'] != null
-            ? List<PokemonSpeciesVariety>.from(json['varieties'].map((x) => PokemonSpeciesVariety.fromJson(x ?? {})))
+            ? List<PokemonSpeciesVariety>.from(json['varieties'].map((x) => PokemonSpeciesVariety.fromJson(x)))
             : [],
       );
 
@@ -119,9 +123,9 @@ class PokemonSpecies with ResourceBase {
   Map<String, dynamic> toJson() => {
         'base_happiness': baseHappiness,
         'capture_rate': captureRate,
-        'color': color.toJson(),
+        'color': color?.toJson(),
         'egg_groups': eggGroups.map((x) => x.toJson()).toList(),
-        'evolution_chain': evolutionChain.toJson(),
+        'evolution_chain': evolutionChain?.toJson(),
         'evolves_from_species': evolvesFromSpecies?.toJson(),
         'flavor_text_entries': flavorTextEntries.map((x) => x.toJson()).toList(),
         'form_descriptions': formDescriptions.map((x) => x.toJson()).toList(),
@@ -142,7 +146,7 @@ class PokemonSpecies with ResourceBase {
         'order': order,
         'pal_park_encounters': palParkEncounters.map((x) => x.toJson()).toList(),
         'pokedex_numbers': pokedexNumbers.map((x) => x.toJson()).toList(),
-        'shape': shape.toJson(),
+        'shape': shape?.toJson(),
         'varieties': varieties.map((x) => x.toJson()).toList(),
       };
 }
@@ -154,7 +158,9 @@ class PokemonSpeciesResource extends NamedAPIResource<PokemonSpecies> {
       PokemonSpeciesResource(rawData: json, name: json['name'], url: json['url']);
 
   @override
-  PokemonSpecies mapper(data) => PokemonSpecies.fromJson(data);
+  PokemonSpecies mapper(data) {
+    return PokemonSpecies.fromJson(data);
+  }
 
   @override
   String toString() => 'PokemonSpeciesResource{name: $name, url: $url}';

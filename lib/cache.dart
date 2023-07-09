@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
 
+import 'pokemon_api.dart';
+
 abstract class CacheManager {
   Future<void> fill(Map<String, dynamic> cache);
   Future<void> clear();
@@ -14,19 +16,82 @@ abstract class CacheManager {
   Future<bool> contains(String key);
   Future<dynamic> get(String key);
 
-  Future<T> tryGet<T>(
+  Future<T> getOne<T>(
     String key, {
+    T Function(dynamic data)? onResult,
+    int? retry,
+  }) async {
+    final _retry = retry ?? 3;
+    Response? response;
+    try {
+      final mapper = onResult ?? ((data) => data);
+      if (await contains(key)) {
+        return mapper(await get(key));
+      }
+      final http = Dio();
+      response = await http.get(key);
+      final value = mapper(response.data);
+      add(key, response.data);
+      return value;
+    } catch (e, stack) {
+      if (_retry > 0) {
+        return getOne(key, onResult: onResult, retry: _retry - 1);
+      }
+      remove(key);
+      print('Error getting $key: $e.\nResponse: $response');
+      print(stack);
+      rethrow;
+    }
+  }
+
+  Future<Pagination<T>> _getPage<T>(
+    String url,
+    PageOptions pageOptions, {
     T Function(dynamic data)? onResult,
   }) async {
     final mapper = onResult ?? ((data) => data);
-    if (await contains(key)) {
-      return mapper(await get(key));
+    final curKey = '$url?$pageOptions';
+    try {
+      if (await contains(curKey)) {
+        final response = await get(curKey);
+        final data = Pagination<T>.fromJson({
+          ...response,
+          'results': (response['results'] as List).map(mapper).toList(),
+        });
+        return data;
+      }
+      final http = Dio();
+      final response = await http.get(curKey);
+      if (response.data == null) {
+        throw Exception('No data');
+      }
+      final data = Pagination<T>.fromJson({
+        ...response.data,
+        'results': (response.data['results'] as List).map(mapper).toList(),
+      });
+      add(curKey, response.data);
+      return data;
+    } catch (e) {
+      remove(curKey);
+      throw Exception('Error getting $url: $e');
     }
-    final http = Dio();
-    final response = await http.get(key);
-    add(key, response.data);
-    final value = mapper(response.data);
-    return value;
+  }
+
+  Future<List<T>> getPages<T>(
+    String url,
+    PageOptions pageOptions, {
+    T Function(dynamic data)? onResult,
+    int? maxPages,
+  }) async {
+    final mapper = onResult ?? ((data) => data);
+    var data = await _getPage<T>(url, pageOptions, onResult: mapper);
+    final pages = [data];
+
+    while (data.next != null && (maxPages == null || pages.length < maxPages)) {
+      data = await _getPage<T>(data.next!, pageOptions, onResult: mapper);
+      pages.add(data);
+    }
+    return pages.expand((e) => e.results).toList();
   }
 }
 
@@ -66,8 +131,7 @@ class FilesystemCache extends CacheManager {
   }
 
   @override
-  Future<void> add(String key, value) =>
-      File('${basePath.path}/${_filename(key)}').writeAsString(jsonEncode(value));
+  Future<void> add(String key, value) => File('${basePath.path}/${_filename(key)}').writeAsString(jsonEncode(value));
 
   @override
   Future<void> clear() => basePath.delete(recursive: true);
@@ -79,8 +143,7 @@ class FilesystemCache extends CacheManager {
   Future<void> fill(Map<String, dynamic> cache) => Future.wait(cache.entries.map((e) => add(e.key, e.value)));
 
   @override
-  Future<dynamic> get(String key) async =>
-      jsonDecode(await File('${basePath.path}/${_filename(key)}').readAsString());
+  Future<dynamic> get(String key) async => jsonDecode(await File('${basePath.path}/${_filename(key)}').readAsString());
 
   @override
   Future<void> remove(String key) => File('${basePath.path}/${_filename(key)}').delete();

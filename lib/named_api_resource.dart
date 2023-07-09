@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-
 import 'pokemon_api.dart';
 
 class NamedAPIResource<T> with ResourceBase {
@@ -10,16 +8,22 @@ class NamedAPIResource<T> with ResourceBase {
 
   NamedAPIResource({
     required this.rawData,
-    required this.name,
+    required String? name,
     required this.url,
-  });
+  }) : name = name ?? 'UNNAMED RESOURCE';
 
   factory NamedAPIResource.fromJson(Map<String, dynamic> json) {
-    return NamedAPIResource(
-      rawData: json,
-      name: json['name'],
-      url: json['url'],
-    );
+    try {
+      return NamedAPIResource(
+        rawData: json,
+        name: json['name'],
+        url: json['url'],
+      );
+    } catch (e, stack) {
+      print('Error parsing NamedAPIResource: $e, json: $json');
+      print(stack);
+      rethrow;
+    }
   }
 
   @override
@@ -39,20 +43,7 @@ class NamedAPIResource<T> with ResourceBase {
       throw Exception('URL is empty');
     }
     final api = PokemonAPIClient.instance;
-    if (await api.cache.contains(url)) {
-      return mapper(await api.cache.get(url));
-    }
-    try {
-      final http = Dio();
-      final result = await http.get(url);
-      api.cache.add(url, result.data);
-      final value = mapper(result.data);
-      return value;
-    } catch (e) {
-      print('Error in NamedAPIResource.get for url $url');
-      print(e);
-      rethrow;
-    }
+    return api.cache.getOne(url, onResult: mapper);
   }
 }
 

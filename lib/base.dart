@@ -12,7 +12,7 @@ mixin ResourceBase {
 
   @override
   String toString() {
-    return '$runtimeType{${toJson()}}';
+    return '$runtimeType${toJson()}';
   }
 
   Map<String, dynamic> toJson();

@@ -45,7 +45,7 @@ class PokemonAPIClient {
   CacheManager _cache;
 
   PokemonAPIClient({CacheManager? cache})
-      : _cache = cache ?? FilesystemCache(baseDirectory: '${Directory.current.path}/.cache');
+      : _cache = cache ?? MemoryCache(); // ?? FilesystemCache(baseDirectory: '${Directory.current.path}/.cache');
 
   CacheManager get cache => _cache;
   setCache(CacheManager cache) => _cache = cache;
@@ -56,27 +56,81 @@ class PokemonAPIClient {
   static void setInstance(PokemonAPIClient client) => instance = client;
 
   /// Get a list of Pokemon
-  Future<List<PokemonResource>> getPokemonList([int limit = 10]) async => cache.tryGet(
-        '$baseUrl/pokemon?limit=$limit',
-        onResult: (data) => (data['results'] as List<dynamic>).map((e) => PokemonResource.fromJson(e)).toList(),
+  Future<List<PokemonResource>> getPokemonList(
+    PageOptions pageOptions, {
+    int? maxPages,
+  }) async =>
+      cache.getPages(
+        '$baseUrl/pokemon',
+        pageOptions,
+        onResult: (data) => PokemonResource.fromJson(data),
+        maxPages: maxPages,
       );
 
   /// Get a list of Pokemon Species
-  Future<List<PokemonSpeciesResource>> getPokemonSpeciesList([int limit = 10]) async => cache.tryGet(
-        '$baseUrl/pokemon-species?limit=$limit',
-        onResult: (data) => (data['results'] as List<dynamic>).map((e) => PokemonSpeciesResource.fromJson(e)).toList(),
+  Future<List<PokemonSpeciesResource>> getPokemonSpeciesList(
+    PageOptions pageOptions, {
+    int? maxPages,
+  }) async =>
+      cache.getPages(
+        '$baseUrl/pokemon-species',
+        pageOptions,
+        onResult: (data) => PokemonSpeciesResource.fromJson(data),
+        maxPages: maxPages,
       );
 
   /// Get a single Pokemon by name or id
-  Future<Pokemon> getPokemon(String nameOrId) async => cache.tryGet(
+  Future<Pokemon> getPokemon(String nameOrId) async => cache.getOne(
         '$baseUrl/pokemon/$nameOrId',
         onResult: (data) => Pokemon.fromJson(data),
       );
 
   /// Get a single Pokemon Species by name or id
-  Future<PokemonSpecies> getPokemonSpecies(String nameOrId) async => cache.tryGet(
+  Future<PokemonSpecies> getPokemonSpecies(String nameOrId) async => cache.getOne(
         '$baseUrl/pokemon-species/$nameOrId',
         onResult: (data) => PokemonSpecies.fromJson(data),
       );
+}
+
+class Pagination<T> {
+  final List<T> results;
+  final String? next;
+  final String? previous;
+  final int count;
+
+  Pagination({
+    required this.results,
+    this.next,
+    this.previous,
+    required this.count,
+  });
+
+  factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
+        results: json['results'],
+        next: json['next'],
+        previous: json['previous'],
+        count: json['count'],
+      );
+}
+
+class PageOptions {
+  final int limit;
+  final int offset;
+
+  PageOptions({
+    this.limit = 100,
+    this.offset = 0,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'limit': limit,
+        'offset': offset,
+      };
+
+  @override
+  String toString() => Uri(queryParameters: {
+      'limit': [limit.toString()],
+      'offset': [offset.toString()],
+      }).query;
 }
 
