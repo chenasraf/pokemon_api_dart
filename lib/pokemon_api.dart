@@ -58,25 +58,25 @@ class PokemonAPIClient {
   /// Get a list of Pokemon
   Future<List<PokemonResource>> getPokemonList([int limit = 10]) async => cache.tryGet(
         '$baseUrl/pokemon?limit=$limit',
-        onMiss: (data) => (data['results'] as List<dynamic>).map((e) => PokemonResource.fromJson(e)).toList(),
+        onResult: (data) => (data['results'] as List<dynamic>).map((e) => PokemonResource.fromJson(e)).toList(),
       );
 
   /// Get a list of Pokemon Species
   Future<List<PokemonSpeciesResource>> getPokemonSpeciesList([int limit = 10]) async => cache.tryGet(
         '$baseUrl/pokemon-species?limit=$limit',
-        onMiss: (data) => (data['results'] as List<dynamic>).map((e) => PokemonSpeciesResource.fromJson(e)).toList(),
+        onResult: (data) => (data['results'] as List<dynamic>).map((e) => PokemonSpeciesResource.fromJson(e)).toList(),
       );
 
   /// Get a single Pokemon by name or id
   Future<Pokemon> getPokemon(String nameOrId) async => cache.tryGet(
         '$baseUrl/pokemon/$nameOrId',
-        onMiss: (data) => Pokemon.fromJson(data),
+        onResult: (data) => Pokemon.fromJson(data),
       );
 
   /// Get a single Pokemon Species by name or id
   Future<PokemonSpecies> getPokemonSpecies(String nameOrId) async => cache.tryGet(
         '$baseUrl/pokemon-species/$nameOrId',
-        onMiss: (data) => PokemonSpecies.fromJson(data),
+        onResult: (data) => PokemonSpecies.fromJson(data),
       );
 }
 

@@ -76,11 +76,17 @@ class PokemonSpecies with ResourceBase {
         baseHappiness: json['base_happiness'],
         captureRate: json['capture_rate'],
         color: NamedAPIResource.fromJson(json['color'] ?? {}),
-        eggGroups: json['egg_groups'] != null ? List<NamedAPIResource>.from(json['egg_groups'].map((x) => NamedAPIResource.fromJson(x ?? {}))) : [],
+        eggGroups: json['egg_groups'] != null
+            ? List<NamedAPIResource>.from(json['egg_groups'].map((x) => NamedAPIResource.fromJson(x ?? {})))
+            : [],
         evolutionChain: NamedAPIResource.fromJson(json['evolution_chain'] ?? {}),
         evolvesFromSpecies: NamedAPIResource.fromJson(json['evolves_from_species'] ?? {}),
-        flavorTextEntries: json['flavor_text_entries'] != null ? List<FlavorText>.from(json['flavor_text_entries'].map((x) => FlavorText.fromJson(x ?? {}))) : [],
-        formDescriptions: json['form_descriptions'] != null ? List<Description>.from(json['form_descriptions'].map((x) => Description.fromJson(x ?? {}))) : [],
+        flavorTextEntries: json['flavor_text_entries'] != null
+            ? List<FlavorText>.from(json['flavor_text_entries'].map((x) => FlavorText.fromJson(x ?? {})))
+            : [],
+        formDescriptions: json['form_descriptions'] != null
+            ? List<Description>.from(json['form_descriptions'].map((x) => Description.fromJson(x ?? {})))
+            : [],
         formsSwitchable: json['forms_switchable'],
         genderRate: json['gender_rate'],
         genera: json['genera'] != null ? List<Genus>.from(json['genera'].map((x) => Genus.fromJson(x ?? {}))) : [],
@@ -96,42 +102,49 @@ class PokemonSpecies with ResourceBase {
         name: json['name'],
         names: json['names'] != null ? List<Name>.from(json['names'].map((x) => Name.fromJson(x ?? {}))) : [],
         order: json['order'],
-        palParkEncounters: json['pal_park_encounters'] != null ? List<PalParkEncounterArea>.from( json['pal_park_encounters'].map((x) => PalParkEncounterArea.fromJson(x ?? {}))) : [],
-        pokedexNumbers: json['pokedex_numbers'] != null ? List<PokedexNumber>.from(json['pokedex_numbers'].map((x) => PokedexNumber.fromJson(x ?? {}))) : [],
+        palParkEncounters: json['pal_park_encounters'] != null
+            ? List<PalParkEncounterArea>.from(
+                json['pal_park_encounters'].map((x) => PalParkEncounterArea.fromJson(x ?? {})))
+            : [],
+        pokedexNumbers: json['pokedex_numbers'] != null
+            ? List<PokedexNumber>.from(json['pokedex_numbers'].map((x) => PokedexNumber.fromJson(x ?? {})))
+            : [],
         shape: NamedAPIResource.fromJson(json['shape'] ?? {}),
-        varieties: json['varieties'] != null ? List<PokemonSpeciesVariety>.from(json['varieties'].map((x) => PokemonSpeciesVariety.fromJson(x ?? {}))) : [],
+        varieties: json['varieties'] != null
+            ? List<PokemonSpeciesVariety>.from(json['varieties'].map((x) => PokemonSpeciesVariety.fromJson(x ?? {})))
+            : [],
       );
 
   @override
   Map<String, dynamic> toJson() => {
-    'base_happiness': baseHappiness,
-    'capture_rate': captureRate,
-    'color': color.toJson(), 
-    'egg_groups': eggGroups.map((x) => x.toJson()).toList(),
-    'evolution_chain': evolutionChain.toJson(),
-    'evolves_from_species': evolvesFromSpecies?.toJson(),
-    'flavor_text_entries': flavorTextEntries.map((x) => x.toJson()).toList(),
-    'form_descriptions': formDescriptions.map((x) => x.toJson()).toList(),
-    'form_switchtable': formsSwitchable,
-    'gender_rate': genderRate,
-    'genera': genera.map((x) => x.toJson()).toList(),
-    'generation': generation.toJson(),
-    'growth_rate': growthRate.toJson(),
-    'habitat': habitat?.toJson(),
-    'has_gender_differences': hasGenderDifferences,
-    'hatch_counter': hatchCounter,
-    'id': id,
-    'is_baby': isBaby,
-    'is_legendary': isLegendary,
-    'is_mythical': isMythical,
-    'name': name,
-    'names': names.map((x) => x.toJson()).toList(),
-    'order': order,
-    'pal_park_encounters': palParkEncounters.map((x) => x.toJson()).toList(),
-    'pokedex_numbers': pokedexNumbers.map((x) => x.toJson()).toList(),
-    'shape': shape.toJson(),
-    'varieties': varieties.map((x) => x.toJson()).toList(),
-  };
+        'base_happiness': baseHappiness,
+        'capture_rate': captureRate,
+        'color': color.toJson(),
+        'egg_groups': eggGroups.map((x) => x.toJson()).toList(),
+        'evolution_chain': evolutionChain.toJson(),
+        'evolves_from_species': evolvesFromSpecies?.toJson(),
+        'flavor_text_entries': flavorTextEntries.map((x) => x.toJson()).toList(),
+        'form_descriptions': formDescriptions.map((x) => x.toJson()).toList(),
+        'form_switchtable': formsSwitchable,
+        'gender_rate': genderRate,
+        'genera': genera.map((x) => x.toJson()).toList(),
+        'generation': generation.toJson(),
+        'growth_rate': growthRate.toJson(),
+        'habitat': habitat?.toJson(),
+        'has_gender_differences': hasGenderDifferences,
+        'hatch_counter': hatchCounter,
+        'id': id,
+        'is_baby': isBaby,
+        'is_legendary': isLegendary,
+        'is_mythical': isMythical,
+        'name': name,
+        'names': names.map((x) => x.toJson()).toList(),
+        'order': order,
+        'pal_park_encounters': palParkEncounters.map((x) => x.toJson()).toList(),
+        'pokedex_numbers': pokedexNumbers.map((x) => x.toJson()).toList(),
+        'shape': shape.toJson(),
+        'varieties': varieties.map((x) => x.toJson()).toList(),
+      };
 }
 
 class PokemonSpeciesResource extends NamedAPIResource<PokemonSpecies> {
@@ -139,6 +152,9 @@ class PokemonSpeciesResource extends NamedAPIResource<PokemonSpecies> {
 
   factory PokemonSpeciesResource.fromJson(Map<String, dynamic> json) =>
       PokemonSpeciesResource(rawData: json, name: json['name'], url: json['url']);
+
+  @override
+  PokemonSpecies mapper(data) => PokemonSpecies.fromJson(data);
 
   @override
   String toString() => 'PokemonSpeciesResource{name: $name, url: $url}';

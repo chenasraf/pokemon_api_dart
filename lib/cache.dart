@@ -16,9 +16,9 @@ abstract class CacheManager {
 
   Future<T> tryGet<T>(
     String key, {
-    T Function(dynamic data)? onMiss,
+    T Function(dynamic data)? onResult,
   }) async {
-    final mapper = onMiss ?? ((data) => data);
+    final mapper = onResult ?? ((data) => data);
     if (await contains(key)) {
       return mapper(await get(key));
     }
