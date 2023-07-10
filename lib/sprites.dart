@@ -152,9 +152,9 @@ class PokemonAllSprites extends PokemonSprites {
 }
 
 class PokemonSpritesOther {
-  final PokemonSprites dreamWorld;
-  final PokemonSprites officialArtwork;
-  final PokemonSprites home;
+  final PokemonSprites? dreamWorld;
+  final PokemonSprites? officialArtwork;
+  final PokemonSprites? home;
 
   PokemonSpritesOther({
     required this.dreamWorld,
@@ -163,27 +163,27 @@ class PokemonSpritesOther {
   });
 
   factory PokemonSpritesOther.fromJson(Map<String, dynamic> json) => PokemonSpritesOther(
-        dreamWorld: PokemonSprites.fromJson(json['dream_world']),
-        officialArtwork: PokemonSprites.fromJson(json['official-artwork']),
-        home: PokemonSprites.fromJson(json['home']),
+        dreamWorld: json['dream_world'] != null ? PokemonSprites.fromJson(json['dream_world']) : null,
+        officialArtwork: json['official-artwork'] != null ? PokemonSprites.fromJson(json['official-artwork']) : null,
+        home: json['home'] != null ? PokemonSprites.fromJson(json['home']) : null,
       );
 
   Map<String, dynamic> toJson() => {
-        'dream_world': dreamWorld.toJson(),
-        'official-artwork': officialArtwork.toJson(),
-        'home': home.toJson(),
+        'dream_world': dreamWorld?.toJson(),
+        'official-artwork': officialArtwork?.toJson(),
+        'home': home?.toJson(),
       };
 }
 
 class PokemonSpritesVersions {
-  final PokemonSpritesGeneration1 generation1;
-  final PokemonSpritesGeneration2 generation2;
-  final PokemonSpritesGeneration3 generation3;
-  final PokemonSpritesGeneration4 generation4;
-  final PokemonSpritesGeneration5 generation5;
-  final PokemonSpritesGeneration6 generation6;
-  final PokemonSpritesGeneration7 generation7;
-  final PokemonSpritesGeneration8 generation8;
+  final PokemonSpritesGeneration1? generation1;
+  final PokemonSpritesGeneration2? generation2;
+  final PokemonSpritesGeneration3? generation3;
+  final PokemonSpritesGeneration4? generation4;
+  final PokemonSpritesGeneration5? generation5;
+  final PokemonSpritesGeneration6? generation6;
+  final PokemonSpritesGeneration7? generation7;
+  final PokemonSpritesGeneration8? generation8;
 
   PokemonSpritesVersions({
     required this.generation1,
@@ -197,31 +197,32 @@ class PokemonSpritesVersions {
   });
 
   factory PokemonSpritesVersions.fromJson(Map<String, dynamic> json) => PokemonSpritesVersions(
-        generation1: PokemonSpritesGeneration1.fromJson(json['generation-i']),
-        generation2: PokemonSpritesGeneration2.fromJson(json['generation-ii']),
-        generation3: PokemonSpritesGeneration3.fromJson(json['generation-iii']),
-        generation4: PokemonSpritesGeneration4.fromJson(json['generation-iv']),
-        generation5: PokemonSpritesGeneration5.fromJson(json['generation-v']),
-        generation6: PokemonSpritesGeneration6.fromJson(json['generation-vi']),
-        generation7: PokemonSpritesGeneration7.fromJson(json['generation-vii']),
-        generation8: PokemonSpritesGeneration8.fromJson(json['generation-viii']),
+        generation1: json['generation-i'] != null ? PokemonSpritesGeneration1.fromJson(json['generation-i']) : null,
+        generation2: json['generation-ii'] != null ? PokemonSpritesGeneration2.fromJson(json['generation-ii']) : null,
+        generation3: json['generation-iii'] != null ? PokemonSpritesGeneration3.fromJson(json['generation-iii']) : null,
+        generation4: json['generation-iv'] != null ? PokemonSpritesGeneration4.fromJson(json['generation-iv']) : null,
+        generation5: json['generation-v'] != null ? PokemonSpritesGeneration5.fromJson(json['generation-v']) : null,
+        generation6: json['generation-vi'] != null ? PokemonSpritesGeneration6.fromJson(json['generation-vi']) : null,
+        generation7: json['generation-vii'] != null ? PokemonSpritesGeneration7.fromJson(json['generation-vii']) : null,
+        generation8:
+            json['generation-viii'] != null ? PokemonSpritesGeneration8.fromJson(json['generation-viii']) : null,
       );
 
   Map<String, dynamic> toJson() => {
-        'generation-i': generation1.toJson(),
-        'generation-ii': generation2.toJson(),
-        'generation-iii': generation3.toJson(),
-        'generation-iv': generation4.toJson(),
-        'generation-v': generation5.toJson(),
-        'generation-vi': generation6.toJson(),
-        'generation-vii': generation7.toJson(),
-        'generation-viii': generation8.toJson(),
+        'generation-i': generation1?.toJson(),
+        'generation-ii': generation2?.toJson(),
+        'generation-iii': generation3?.toJson(),
+        'generation-iv': generation4?.toJson(),
+        'generation-v': generation5?.toJson(),
+        'generation-vi': generation6?.toJson(),
+        'generation-vii': generation7?.toJson(),
+        'generation-viii': generation8?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration1 with ResourceBase {
-  final PokemonSprites redBlue;
-  final PokemonSprites yellow;
+  final PokemonSprites? redBlue;
+  final PokemonSprites? yellow;
 
   @override
   final Map<String, dynamic> rawData;
@@ -234,21 +235,21 @@ class PokemonSpritesGeneration1 with ResourceBase {
 
   factory PokemonSpritesGeneration1.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration1(
         rawData: json,
-        redBlue: PokemonSprites.fromJson(json['red-blue']),
-        yellow: PokemonSprites.fromJson(json['yellow']),
+        redBlue: json['red-blue'] != null ? PokemonSprites.fromJson(json['red-blue']) : null,
+        yellow: json['yellow'] != null ? PokemonSprites.fromJson(json['yellow']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'red-blue': redBlue.toJson(),
-        'yellow': yellow.toJson(),
+        'red-blue': redBlue?.toJson(),
+        'yellow': yellow?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration2 with ResourceBase {
-  final PokemonSprites crystal;
-  final PokemonSprites gold;
-  final PokemonSprites silver;
+  final PokemonSprites? crystal;
+  final PokemonSprites? gold;
+  final PokemonSprites? silver;
 
   @override
   final Map<String, dynamic> rawData;
@@ -262,23 +263,23 @@ class PokemonSpritesGeneration2 with ResourceBase {
 
   factory PokemonSpritesGeneration2.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration2(
         rawData: json,
-        crystal: PokemonSprites.fromJson(json['crystal']),
-        gold: PokemonSprites.fromJson(json['gold']),
-        silver: PokemonSprites.fromJson(json['silver']),
+        crystal: json['crystal'] != null ? PokemonSprites.fromJson(json['crystal']) : null,
+        gold: json['gold'] != null ? PokemonSprites.fromJson(json['gold']) : null,
+        silver: json['silver'] != null ? PokemonSprites.fromJson(json['silver']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'crystal': crystal.toJson(),
-        'gold': gold.toJson(),
-        'silver': silver.toJson(),
+        'crystal': crystal?.toJson(),
+        'gold': gold?.toJson(),
+        'silver': silver?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration3 with ResourceBase {
-  final PokemonSprites emerald;
-  final PokemonSprites fireredLeafgreen;
-  final PokemonSprites rubySapphire;
+  final PokemonSprites? emerald;
+  final PokemonSprites? fireredLeafgreen;
+  final PokemonSprites? rubySapphire;
 
   @override
   final Map<String, dynamic> rawData;
@@ -292,23 +293,23 @@ class PokemonSpritesGeneration3 with ResourceBase {
 
   factory PokemonSpritesGeneration3.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration3(
         rawData: json,
-        emerald: PokemonSprites.fromJson(json['emerald']),
-        fireredLeafgreen: PokemonSprites.fromJson(json['firered-leafgreen']),
-        rubySapphire: PokemonSprites.fromJson(json['ruby-sapphire']),
+        emerald: json['emerald'] != null ? PokemonSprites.fromJson(json['emerald']) : null,
+        fireredLeafgreen: json['firered-leafgreen'] != null ? PokemonSprites.fromJson(json['firered-leafgreen']) : null,
+        rubySapphire: json['ruby-sapphire'] != null ? PokemonSprites.fromJson(json['ruby-sapphire']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'emerald': emerald.toJson(),
-        'firered-leafgreen': fireredLeafgreen.toJson(),
-        'ruby-sapphire': rubySapphire.toJson(),
+        'emerald': emerald?.toJson(),
+        'firered-leafgreen': fireredLeafgreen?.toJson(),
+        'ruby-sapphire': rubySapphire?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration4 with ResourceBase {
-  final PokemonSprites diamondPearl;
-  final PokemonSprites heartgoldSoulsilver;
-  final PokemonSprites platinum;
+  final PokemonSprites? diamondPearl;
+  final PokemonSprites? heartgoldSoulsilver;
+  final PokemonSprites? platinum;
 
   @override
   final Map<String, dynamic> rawData;
@@ -322,21 +323,22 @@ class PokemonSpritesGeneration4 with ResourceBase {
 
   factory PokemonSpritesGeneration4.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration4(
         rawData: json,
-        diamondPearl: PokemonSprites.fromJson(json['diamond-pearl']),
-        heartgoldSoulsilver: PokemonSprites.fromJson(json['heartgold-soulsilver']),
-        platinum: PokemonSprites.fromJson(json['platinum']),
+        diamondPearl: json['diamond-pearl'] != null ? PokemonSprites.fromJson(json['diamond-pearl']) : null,
+        heartgoldSoulsilver:
+            json['heartgold-soulsilver'] != null ? PokemonSprites.fromJson(json['heartgold-soulsilver']) : null,
+        platinum: json['platinum'] != null ? PokemonSprites.fromJson(json['platinum']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'diamond-pearl': diamondPearl.toJson(),
-        'heartgold-soulsilver': heartgoldSoulsilver.toJson(),
-        'platinum': platinum.toJson(),
+        'diamond-pearl': diamondPearl?.toJson(),
+        'heartgold-soulsilver': heartgoldSoulsilver?.toJson(),
+        'platinum': platinum?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration5 with ResourceBase {
-  final PokemonSprites blackWhite;
+  final PokemonSprites? blackWhite;
 
   @override
   final Map<String, dynamic> rawData;
@@ -348,18 +350,18 @@ class PokemonSpritesGeneration5 with ResourceBase {
 
   factory PokemonSpritesGeneration5.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration5(
         rawData: json,
-        blackWhite: PokemonSprites.fromJson(json['black-white']),
+        blackWhite: json['black-white'] != null ? PokemonSprites.fromJson(json['black-white']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'black-white': blackWhite.toJson(),
+        'black-white': blackWhite?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration6 with ResourceBase {
-  final PokemonSprites omegarubyAlphasapphire;
-  final PokemonSprites xy;
+  final PokemonSprites? omegarubyAlphasapphire;
+  final PokemonSprites? xy;
 
   @override
   final Map<String, dynamic> rawData;
@@ -372,20 +374,21 @@ class PokemonSpritesGeneration6 with ResourceBase {
 
   factory PokemonSpritesGeneration6.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration6(
         rawData: json,
-        omegarubyAlphasapphire: PokemonSprites.fromJson(json['omegaruby-alphasapphire']),
-        xy: PokemonSprites.fromJson(json['x-y']),
+        omegarubyAlphasapphire:
+            json['omegaruby-alphasapphire'] != null ? PokemonSprites.fromJson(json['omegaruby-alphasapphire']) : null,
+        xy: json['x-y'] != null ? PokemonSprites.fromJson(json['x-y']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'omegaruby-alphasapphire': omegarubyAlphasapphire.toJson(),
-        'x-y': xy.toJson(),
+        'omegaruby-alphasapphire': omegarubyAlphasapphire?.toJson(),
+        'x-y': xy?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration7 with ResourceBase {
-  final PokemonSprites icons;
-  final PokemonSprites ultraSunUltraMoon;
+  final PokemonSprites? icons;
+  final PokemonSprites? ultraSunUltraMoon;
 
   @override
   final Map<String, dynamic> rawData;
@@ -398,19 +401,20 @@ class PokemonSpritesGeneration7 with ResourceBase {
 
   factory PokemonSpritesGeneration7.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration7(
         rawData: json,
-        icons: PokemonSprites.fromJson(json['icons']),
-        ultraSunUltraMoon: PokemonSprites.fromJson(json['ultra-sun-ultra-moon']),
+        icons: json['icons'] != null ? PokemonSprites.fromJson(json['icons']) : null,
+        ultraSunUltraMoon:
+            json['ultra-sun-ultra-moon'] != null ? PokemonSprites.fromJson(json['ultra-sun-ultra-moon']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'icons': icons.toJson(),
-        'ultra-sun-ultra-moon': ultraSunUltraMoon.toJson(),
+        'icons': icons?.toJson(),
+        'ultra-sun-ultra-moon': ultraSunUltraMoon?.toJson(),
       };
 }
 
 class PokemonSpritesGeneration8 with ResourceBase {
-  final PokemonSprites icons;
+  final PokemonSprites? icons;
 
   @override
   final Map<String, dynamic> rawData;
@@ -422,12 +426,12 @@ class PokemonSpritesGeneration8 with ResourceBase {
 
   factory PokemonSpritesGeneration8.fromJson(Map<String, dynamic> json) => PokemonSpritesGeneration8(
         rawData: json,
-        icons: PokemonSprites.fromJson(json['icons']),
+        icons: json['icons'] != null ? PokemonSprites.fromJson(json['icons']) : null,
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        'icons': icons.toJson(),
+        'icons': icons?.toJson(),
       };
 }
 

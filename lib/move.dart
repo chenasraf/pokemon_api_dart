@@ -1,3 +1,5 @@
+import 'package:pokemon_api/pokemon_api.dart';
+
 import 'ability.dart';
 import 'base.dart';
 import 'description.dart';
@@ -48,7 +50,7 @@ class Move with ResourceBase {
   final NamedAPIResource? damageClass;
   final List<VerboseEffect> effectEntries;
   final List<AbilityEffectChange> effectChanges;
-  final List<dynamic> flavorTextEntries;
+  final List<MoveFlavorText> flavorTextEntries;
   final NamedAPIResource? generation;
   final List<dynamic> machines;
   final dynamic metaData;
@@ -105,7 +107,9 @@ class Move with ResourceBase {
       damageClass: json['damage_class'] != null ? NamedAPIResource.fromJson(json['damage_class']) : null,
       effectEntries: (json['effect_entries'] as List<dynamic>).map((e) => VerboseEffect.fromJson(e)).toList(),
       effectChanges: (json['effect_changes'] as List<dynamic>).map((e) => AbilityEffectChange.fromJson(e)).toList(),
-      flavorTextEntries: json['flavor_text_entries'],
+      flavorTextEntries: json['flavor_text_entries'] != null
+          ? (json['flavor_text_entries'] as List<dynamic>).map((e) => MoveFlavorText.fromJson(e)).toList()
+          : [],
       generation: json['generation'] != null ? NamedAPIResource.fromJson(json['generation']) : null,
       machines: json['machines'],
       metaData: json['meta'],

@@ -1,5 +1,6 @@
 import 'base.dart';
 import 'named_api_resource.dart';
+import 'type.dart';
 
 class PokemonTypePast with ResourceBase {
   final NamedAPIResource generation;
@@ -26,36 +27,6 @@ class PokemonTypePast with ResourceBase {
     return {
       'generation': generation.toJson(),
       'types': types.map((e) => e.toJson()).toList(),
-    };
-  }
-}
-
-class PokemonType with ResourceBase {
-  final int slot;
-  final NamedAPIResource type;
-
-  @override
-  final Map<String, dynamic> rawData;
-
-  PokemonType({
-    required this.rawData,
-    required this.slot,
-    required this.type,
-  });
-
-  factory PokemonType.fromJson(Map<String, dynamic> json) {
-    return PokemonType(
-      rawData: json,
-      slot: json['slot'],
-      type: NamedAPIResource.fromJson(json['type']),
-    );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'slot': slot,
-      'type': type.toJson(),
     };
   }
 }

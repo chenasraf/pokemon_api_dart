@@ -5,7 +5,7 @@ import 'named_api_resource.dart';
 class PokemonAbility with ResourceBase {
   final bool isHidden;
   final int slot;
-  final NamedAPIResource ability;
+  final AbilityResource ability;
 
   @override
   final Map<String, dynamic> rawData;
@@ -22,7 +22,7 @@ class PokemonAbility with ResourceBase {
       rawData: json,
       isHidden: json['is_hidden'],
       slot: json['slot'],
-      ability: NamedAPIResource.fromJson(json['ability']),
+      ability: AbilityResource.fromJson(json['ability']),
     );
   }
 
@@ -223,6 +223,34 @@ class VerboseEffect with ResourceBase {
       'short_effect': shortEffect,
       'language': language.toJson(),
     };
+  }
+}
+
+class AbilityResource extends NamedAPIResource<Ability> {
+  AbilityResource({
+    required super.name,
+    required super.url,
+    required super.rawData,
+  });
+
+  factory AbilityResource.fromJson(Map<String, dynamic> json) {
+    return AbilityResource(
+      rawData: json,
+      name: json['name'],
+      url: json['url'],
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+    };
+  }
+
+  @override
+  Ability mapper(dynamic data) {
+    return Ability.fromJson(data);
   }
 }
 
