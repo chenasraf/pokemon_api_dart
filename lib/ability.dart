@@ -194,7 +194,7 @@ class AbilityEffectChange with ResourceBase {
 
 class VerboseEffect with ResourceBase {
   final String effect;
-  final String shortEffect;
+  final String? shortEffect;
   final NamedAPIResource language;
 
   @override

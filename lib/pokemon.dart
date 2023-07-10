@@ -102,8 +102,7 @@ class Pokemon with ResourceBase {
       forms: json['forms'].map<NamedAPIResource>((e) => NamedAPIResource.fromJson(e)).toList(),
       gameIndices: json['game_indices'].map<VersionGameIndex>((e) => VersionGameIndex.fromJson(e)).toList(),
       heldItems: json['held_items'].map<PokemonHeldItem>((e) => PokemonHeldItem.fromJson(e)).toList(),
-      locationAreaEncounters: PokemonLocationAreaResource.fromJson(
-          {'name': 'location-area-encounters', 'url': json['location_area_encounters']}),
+      locationAreaEncounters: PokemonLocationAreaResource.fromJson({'url': json['location_area_encounters']}),
       moves: json['moves'].map<PokemonMove>((e) => PokemonMove.fromJson(e)).toList(),
       pastTypes: json['past_types'].map<PokemonTypePast>((e) => PokemonTypePast.fromJson(e)).toList(),
       sprites: PokemonAllSprites.fromJson(json['sprites']),

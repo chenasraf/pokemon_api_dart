@@ -1,8 +1,11 @@
+import 'ability.dart';
 import 'base.dart';
+import 'description.dart';
+import 'name.dart';
 import 'named_api_resource.dart';
 
 class PokemonMove with ResourceBase {
-  final NamedAPIResource move;
+  final MoveResource? move;
   final List<PokemonMoveVersion> versionGroupDetails;
   @override
   final Map<String, dynamic> rawData;
@@ -16,25 +19,185 @@ class PokemonMove with ResourceBase {
   factory PokemonMove.fromJson(Map<String, dynamic> json) {
     return PokemonMove(
       rawData: json,
-      move: NamedAPIResource.fromJson(json['move']),
+      move: json['move'] != null ? MoveResource.fromJson(json['move']) : null,
       versionGroupDetails:
-          (json['version_group_details'] as List<dynamic>).map((e) => PokemonMoveVersion.fromJson(e)).toList(),
+          ((json['version_group_details'] ?? []) as List<dynamic>).map((e) => PokemonMoveVersion.fromJson(e)).toList(),
     );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      'move': move.toJson(),
+      'move': move?.toJson(),
       'version_group_details': versionGroupDetails.map((e) => e.toJson()).toList(),
     };
   }
 }
 
+class Move with ResourceBase {
+  final int id;
+  final String name;
+  final int? accuracy;
+  final int? effectChance;
+  final int pp;
+  final int priority;
+  final int? power;
+  final dynamic contestCombos;
+  final NamedAPIResource? contestType;
+  final APIResource? contestEffect;
+  final NamedAPIResource? damageClass;
+  final List<VerboseEffect> effectEntries;
+  final List<AbilityEffectChange> effectChanges;
+  final List<dynamic> flavorTextEntries;
+  final NamedAPIResource? generation;
+  final List<dynamic> machines;
+  final dynamic metaData;
+  final List<Name> names;
+  final List<dynamic> pastValues;
+  final List<dynamic> statChanges;
+  final dynamic superContestEffect;
+  final NamedAPIResource? target;
+  final NamedAPIResource? type;
+
+  @override
+  final Map<String, dynamic> rawData;
+
+  Move({
+    required this.rawData,
+    required this.id,
+    required this.name,
+    required this.accuracy,
+    required this.effectChance,
+    required this.pp,
+    required this.priority,
+    required this.power,
+    required this.contestCombos,
+    required this.contestType,
+    required this.contestEffect,
+    required this.damageClass,
+    required this.effectEntries,
+    required this.effectChanges,
+    required this.flavorTextEntries,
+    required this.generation,
+    required this.machines,
+    required this.metaData,
+    required this.names,
+    required this.pastValues,
+    required this.statChanges,
+    required this.superContestEffect,
+    required this.target,
+    required this.type,
+  });
+
+  factory Move.fromJson(Map<String, dynamic> json) {
+    return Move(
+      rawData: json,
+      id: json['id'],
+      name: json['name'],
+      accuracy: json['accuracy'],
+      effectChance: json['effect_chance'],
+      pp: json['pp'],
+      priority: json['priority'],
+      power: json['power'],
+      contestCombos: json['contest_combos'],
+      contestType: json['contest_type'] != null ? NamedAPIResource.fromJson(json['contest_type']) : null,
+      contestEffect: json['contest_effect'] != null ? APIResource.fromJson(json['contest_effect']) : null,
+      damageClass: json['damage_class'] != null ? NamedAPIResource.fromJson(json['damage_class']) : null,
+      effectEntries: (json['effect_entries'] as List<dynamic>).map((e) => VerboseEffect.fromJson(e)).toList(),
+      effectChanges: (json['effect_changes'] as List<dynamic>).map((e) => AbilityEffectChange.fromJson(e)).toList(),
+      flavorTextEntries: json['flavor_text_entries'],
+      generation: json['generation'] != null ? NamedAPIResource.fromJson(json['generation']) : null,
+      machines: json['machines'],
+      metaData: json['meta'],
+      names: (json['names'] as List<dynamic>).map((e) => Name.fromJson(e)).toList(),
+      pastValues: json['past_values'],
+      statChanges: json['stat_changes'],
+      superContestEffect: json['super_contest_effect'],
+      target: json['target'] != null ? NamedAPIResource.fromJson(json['target']) : null,
+      type: json['type'] != null ? NamedAPIResource.fromJson(json['type']) : null,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'accuracy': accuracy,
+      'effect_chance': effectChance,
+      'pp': pp,
+      'priority': priority,
+      'power': power,
+      'contest_combos': contestCombos?.toJson(),
+      'contest_type': contestType?.toJson(),
+      'contest_effect': contestEffect?.toJson(),
+      'damage_class': damageClass?.toJson(),
+      'effect_entries': effectEntries.map((e) => e.toJson()).toList(),
+      'effect_changes': effectChanges.map((e) => e.toJson()).toList(),
+      'flavor_text_entries': flavorTextEntries,
+      'generation': generation?.toJson(),
+      'machines': machines,
+      'meta': metaData,
+      'names': names.map((e) => e.toJson()).toList(),
+      'past_values': pastValues,
+      'stat_changes': statChanges,
+      'super_contest_effect': superContestEffect,
+      'target': target?.toJson(),
+      'type': type?.toJson(),
+    };
+  }
+}
+
+class MoveResource extends NamedAPIResource<Move> {
+  MoveResource({required super.name, required super.url, required super.rawData});
+
+  factory MoveResource.fromJson(Map<String, dynamic> json) {
+    return MoveResource(
+      rawData: json,
+      name: json['name'],
+      url: json['url'],
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'url': url,
+    };
+  }
+
+  @override
+  Move mapper(data) => Move.fromJson(data);
+}
+
+class PokemonMoveResource extends NamedAPIResource<PokemonMove> {
+  PokemonMoveResource({required super.name, required super.url, required super.rawData});
+
+  factory PokemonMoveResource.fromJson(Map<String, dynamic> json) {
+    return PokemonMoveResource(
+      rawData: json,
+      name: json['name'],
+      url: json['url'],
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'url': url,
+    };
+  }
+
+  @override
+  PokemonMove mapper(data) => PokemonMove.fromJson(data);
+}
+
 class PokemonMoveVersion with ResourceBase {
-  final NamedAPIResource versionGroup;
-  final int levelLearnedAt;
-  final NamedAPIResource moveLearnMethod;
+  final NamedAPIResource? versionGroup;
+  final int? levelLearnedAt;
+  final MoveLearnMethodResource? moveLearnMethod;
   @override
   final Map<String, dynamic> rawData;
 
@@ -48,19 +211,104 @@ class PokemonMoveVersion with ResourceBase {
   factory PokemonMoveVersion.fromJson(Map<String, dynamic> json) {
     return PokemonMoveVersion(
       rawData: json,
-      versionGroup: NamedAPIResource.fromJson(json['version_group']),
+      versionGroup: json['version_group'] != null ? NamedAPIResource.fromJson(json['version_group']) : null,
       levelLearnedAt: json['level_learned_at'],
-      moveLearnMethod: NamedAPIResource.fromJson(json['move_learn_method']),
+      moveLearnMethod:
+          json['move_learn_method'] != null ? MoveLearnMethodResource.fromJson(json['move_learn_method']) : null,
     );
   }
 
   @override
   Map<String, dynamic> toJson() {
     return {
-      'version_group': versionGroup.toJson(),
+      'version_group': versionGroup?.toJson(),
       'level_learned_at': levelLearnedAt,
-      'move_learn_method': moveLearnMethod.toJson(),
+      'move_learn_method': moveLearnMethod?.toJson(),
     };
   }
+}
+
+class MoveLearnMethod with ResourceBase {
+  final int id;
+  final String name;
+  final List<Name> names;
+  final List<NamedAPIResource> versionGroups;
+  final List<Description> descriptions;
+
+  @override
+  final Map<String, dynamic> rawData;
+
+  MoveLearnMethod({
+    required this.rawData,
+    required this.id,
+    required this.name,
+    required this.names,
+    required this.versionGroups,
+    required this.descriptions,
+  });
+
+  factory MoveLearnMethod.fromJson(Map<String, dynamic> json) {
+    return MoveLearnMethod(
+      rawData: json,
+      id: json['id'],
+      name: json['name'],
+      names: (json['names'] as List<dynamic>).map((e) => Name.fromJson(e)).toList(),
+      versionGroups: (json['version_groups'] as List<dynamic>).map((e) => NamedAPIResource.fromJson(e)).toList(),
+      descriptions: (json['descriptions'] as List<dynamic>).map((e) => Description.fromJson(e)).toList(),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'names': names.map((e) => e.toJson()).toList(),
+      'version_groups': versionGroups.map((e) => e.toJson()).toList(),
+      'descriptions': descriptions.map((e) => e.toJson()).toList(),
+    };
+  }
+}
+
+class PokemonMoveVersionResource extends NamedAPIResource<PokemonMoveVersion> {
+  PokemonMoveVersionResource({
+    required Map<String, dynamic> rawData,
+    required String name,
+    required String url,
+  }) : super(
+          rawData: rawData,
+          name: name,
+          url: url,
+        );
+
+  factory PokemonMoveVersionResource.fromJson(Map<String, dynamic> json) => PokemonMoveVersionResource(
+        rawData: json,
+        name: json['name'],
+        url: json['url'],
+      );
+
+  @override
+  PokemonMoveVersion mapper(dynamic data) => PokemonMoveVersion.fromJson(data);
+}
+
+class MoveLearnMethodResource extends NamedAPIResource<MoveLearnMethod> {
+  MoveLearnMethodResource({
+    required Map<String, dynamic> rawData,
+    required String name,
+    required String url,
+  }) : super(
+          rawData: rawData,
+          name: name,
+          url: url,
+        );
+
+  factory MoveLearnMethodResource.fromJson(Map<String, dynamic> json) => MoveLearnMethodResource(
+        rawData: json,
+        name: json['name'],
+        url: json['url'],
+      );
+
+  @override
+  MoveLearnMethod mapper(dynamic data) => MoveLearnMethod.fromJson(data);
 }
 

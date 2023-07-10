@@ -75,12 +75,11 @@ class LocationArea with ResourceBase {
   }
 }
 
-class PokemonLocationAreaResource extends NamedAPIResource<List<PokemonLocationArea>> {
-  PokemonLocationAreaResource({required super.rawData, required super.name, required super.url});
+class PokemonLocationAreaResource extends APIResource<List<PokemonLocationArea>> {
+  PokemonLocationAreaResource({required super.rawData, required super.url});
   factory PokemonLocationAreaResource.fromJson(Map<String, dynamic> json) {
     return PokemonLocationAreaResource(
       rawData: json,
-      name: json['name'],
       url: json['url'],
     );
   }
