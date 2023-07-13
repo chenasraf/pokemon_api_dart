@@ -1,10 +1,11 @@
-import 'package:pokemon_api/pokemon_api.dart';
-
 import 'ability.dart';
 import 'base.dart';
 import 'description.dart';
+import 'flavor_text.dart';
 import 'name.dart';
 import 'named_api_resource.dart';
+import 'type.dart';
+import 'version_group.dart';
 
 class PokemonMove with ResourceBase {
   final MoveResource? move;
@@ -55,7 +56,7 @@ class Move with ResourceBase {
   final List<dynamic> machines;
   final dynamic metaData;
   final List<Name> names;
-  final List<dynamic> pastValues;
+  final PastMoveStatValues pastValues;
   final List<dynamic> statChanges;
   final dynamic superContestEffect;
   final NamedAPIResource? target;
@@ -114,7 +115,7 @@ class Move with ResourceBase {
       machines: json['machines'],
       metaData: json['meta'],
       names: (json['names'] as List<dynamic>).map((e) => Name.fromJson(e)).toList(),
-      pastValues: json['past_values'],
+      pastValues: PastMoveStatValues.fromJson(json['past_values']),
       statChanges: json['stat_changes'],
       superContestEffect: json['super_contest_effect'],
       target: json['target'] != null ? NamedAPIResource.fromJson(json['target']) : null,
@@ -316,3 +317,52 @@ class MoveLearnMethodResource extends NamedAPIResource<MoveLearnMethod> {
   MoveLearnMethod mapper(dynamic data) => MoveLearnMethod.fromJson(data);
 }
 
+class PastMoveStatValues with ResourceBase {
+  final int? accuracy;
+  final int? effectChance;
+  final int? power;
+  final int? pp;
+  final int? effectEntries;
+  final TypeResource? type;
+  final VersionGroupResource? versionGroup;
+
+  @override
+  final Map<String, dynamic> rawData;
+
+  PastMoveStatValues({
+    required this.rawData,
+    required this.accuracy,
+    required this.effectChance,
+    required this.power,
+    required this.pp,
+    required this.effectEntries,
+    required this.type,
+    required this.versionGroup,
+  });
+
+  factory PastMoveStatValues.fromJson(Map<String, dynamic> json) {
+    return PastMoveStatValues(
+      rawData: json,
+      accuracy: json['accuracy'],
+      effectChance: json['effect_chance'],
+      power: json['power'],
+      pp: json['pp'],
+      effectEntries: json['effect_entries'],
+      type: json['type'] != null ? TypeResource.fromJson(json['type']) : null,
+      versionGroup: json['version_group'] != null ? VersionGroupResource.fromJson(json['version_group']) : null,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'accuracy': accuracy,
+      'effect_chance': effectChance,
+      'power': power,
+      'pp': pp,
+      'effect_entries': effectEntries,
+      'type': type?.toJson(),
+      'version_group': versionGroup?.toJson(),
+    };
+  }
+}

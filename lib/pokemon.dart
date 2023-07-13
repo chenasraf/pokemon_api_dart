@@ -5,6 +5,7 @@ import 'location_area.dart';
 import 'move.dart';
 import 'named_api_resource.dart';
 import 'past_type.dart';
+import 'stat.dart';
 import 'type.dart';
 import 'sprites.dart';
 import 'version_game_index.dart';
@@ -59,7 +60,7 @@ class Pokemon with ResourceBase {
   final NamedAPIResource species;
 
   /// Base stats for this pokemon
-  final List<dynamic> stats;
+  final List<PokemonStat> stats;
 
   /// The types of this pokemon
   final List<PokemonType> types;
@@ -108,7 +109,7 @@ class Pokemon with ResourceBase {
       pastTypes: json['past_types'].map<PokemonTypePast>((e) => PokemonTypePast.fromJson(e)).toList(),
       sprites: PokemonAllSprites.fromJson(json['sprites']),
       species: NamedAPIResource.fromJson(json['species']),
-      stats: json['stats'],
+      stats: json['stats'].map<PokemonStat>((e) => PokemonStat.fromJson(e)).toList(),
       types: json['types'].map<PokemonType>((e) => PokemonType.fromJson(e)).toList(),
     );
   }
@@ -132,7 +133,7 @@ class Pokemon with ResourceBase {
       'past_types': pastTypes.map((e) => e.toJson()).toList(),
       'sprites': sprites.toJson(),
       'species': species.toJson(),
-      'stats': stats,
+      'stats': stats.map((e) => e.toJson()).toList(),
       'types': types.map((e) => e.toJson()).toList(),
     };
   }

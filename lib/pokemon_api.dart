@@ -1,7 +1,6 @@
 library pokemon_api;
 
 import 'dart:async';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 
@@ -35,6 +34,8 @@ export 'pokemon_species.dart';
 export 'pokemon_species_variety.dart';
 export 'region.dart';
 export 'sprites.dart';
+export 'stat.dart';
+export 'type.dart';
 export 'version_game_index.dart';
 
 /// The main API client to fetch Pokemon data.
@@ -129,8 +130,8 @@ class PageOptions {
 
   @override
   String toString() => Uri(queryParameters: {
-      'limit': [limit.toString()],
-      'offset': [offset.toString()],
+        'limit': [limit.toString()],
+        'offset': [offset.toString()],
       }).query;
 }
 

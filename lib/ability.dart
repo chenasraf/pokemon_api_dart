@@ -1,6 +1,9 @@
 import 'base.dart';
+import 'generation.dart';
+import 'language.dart';
 import 'name.dart';
 import 'named_api_resource.dart';
+import 'pokemon.dart';
 
 class PokemonAbility with ResourceBase {
   final bool isHidden;
@@ -40,7 +43,7 @@ class Ability with ResourceBase {
   final int id;
   final String name;
   final bool isMainSeries;
-  final NamedAPIResource generation;
+  final GenerationResource generation;
   final List<Name> names;
   final List<VerboseEffect> effectEntries;
   final List<AbilityEffectChange> effectChanges;
@@ -69,7 +72,7 @@ class Ability with ResourceBase {
       id: json['id'],
       name: json['name'],
       isMainSeries: json['is_main_series'],
-      generation: NamedAPIResource.fromJson(json['generation']),
+      generation: GenerationResource.fromJson(json['generation']),
       names: json['names'].map<Name>((e) => Name.fromJson(e)).toList(),
       effectEntries: json['effect_entries'].map<VerboseEffect>((e) => VerboseEffect.fromJson(e)).toList(),
       effectChanges: json['effect_changes'].map<AbilityEffectChange>((e) => AbilityEffectChange.fromJson(e)).toList(),
@@ -98,7 +101,7 @@ class Ability with ResourceBase {
 class AbilityPokemon with ResourceBase {
   final bool isHidden;
   final int slot;
-  final NamedAPIResource pokemon;
+  final PokemonResource pokemon;
 
   @override
   final Map<String, dynamic> rawData;
@@ -115,7 +118,7 @@ class AbilityPokemon with ResourceBase {
       rawData: json,
       isHidden: json['is_hidden'],
       slot: json['slot'],
-      pokemon: NamedAPIResource.fromJson(json['pokemon']),
+      pokemon: PokemonResource.fromJson(json['pokemon']),
     );
   }
 
@@ -131,7 +134,7 @@ class AbilityPokemon with ResourceBase {
 
 class AbilityFlavorText with ResourceBase {
   final String flavorText;
-  final NamedAPIResource language;
+  final LanguageResource language;
   final NamedAPIResource versionGroup;
 
   @override
@@ -148,7 +151,7 @@ class AbilityFlavorText with ResourceBase {
     return AbilityFlavorText(
       rawData: json,
       flavorText: json['flavor_text'],
-      language: NamedAPIResource.fromJson(json['language']),
+      language: LanguageResource.fromJson(json['language']),
       versionGroup: NamedAPIResource.fromJson(json['version_group']),
     );
   }
