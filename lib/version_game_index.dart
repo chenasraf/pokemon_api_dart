@@ -20,13 +20,5 @@ class VersionGameIndex with ResourceBase {
       version: NamedAPIResource.fromJson(json['version']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'game_index': gameIndex,
-      'version': version.toJson(),
-    };
-  }
 }
 

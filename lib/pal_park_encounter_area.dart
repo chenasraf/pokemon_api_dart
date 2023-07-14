@@ -24,12 +24,5 @@ class PalParkEncounterArea with ResourceBase {
       area: NamedAPIResource.fromJson(json['area']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'base_score': baseScore,
-        'rate': rate,
-        'area': area.toJson(),
-      };
 }
 

@@ -20,13 +20,5 @@ class Name with ResourceBase {
       language: NamedAPIResource.fromJson(json['language']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'language': language.toJson(),
-    };
-  }
 }
 

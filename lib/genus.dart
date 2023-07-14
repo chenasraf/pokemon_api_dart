@@ -21,11 +21,5 @@ class Genus with ResourceBase {
       language: NamedAPIResource.fromJson(json['language']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'genus': genus,
-        'language': language.toJson(),
-      };
 }
 

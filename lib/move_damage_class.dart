@@ -33,17 +33,6 @@ class MoveDamageClass with ResourceBase {
       names: json['names'].map((e) => Name.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'descriptions': descriptions.map((e) => e.toJson()).toList(),
-      'moves': moves.map((e) => e.toJson()).toList(),
-      'names': names.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class MoveDamageClassResource extends NamedAPIResource<MoveDamageClass> {

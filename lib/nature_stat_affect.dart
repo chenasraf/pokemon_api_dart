@@ -22,14 +22,6 @@ class NatureStatAffectSets with ResourceBase {
       decrease: json['decrease'].map((e) => NamedAPIResource.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'increase': increase.map((e) => e.toJson()).toList(),
-      'decrease': decrease.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class NatureStatChange with ResourceBase {
@@ -51,14 +43,6 @@ class NatureStatChange with ResourceBase {
       maxChange: json['max_change'],
       pokeathlonStat: NamedAPIResource.fromJson(json['pokeathlon_stat']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'max_change': maxChange,
-      'pokeathlon_stat': pokeathlonStat.toJson(),
-    };
   }
 }
 
@@ -88,16 +72,6 @@ class PokeathlonStat with ResourceBase {
       affectingNatures: NaturePokeathlonStatAffectSets.fromJson(json['affecting_natures']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'names': names,
-      'affecting_natures': affectingNatures.toJson(),
-    };
-  }
 }
 
 class NaturePokeathlonStatAffectSets with ResourceBase {
@@ -120,14 +94,6 @@ class NaturePokeathlonStatAffectSets with ResourceBase {
       decrease: json['decrease'].map((e) => NaturePokeathlonStatAffect.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'increase': increase.map((e) => e.toJson()).toList(),
-      'decrease': decrease.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class NaturePokeathlonStatAffect with ResourceBase {
@@ -149,14 +115,6 @@ class NaturePokeathlonStatAffect with ResourceBase {
       maxChange: json['max_change'],
       nature: NamedAPIResource.fromJson(json['nature']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'max_change': maxChange,
-      'nature': nature.toJson(),
-    };
   }
 }
 

@@ -118,37 +118,6 @@ class PokemonSpecies with ResourceBase {
             ? List<PokemonSpeciesVariety>.from(json['varieties'].map((x) => PokemonSpeciesVariety.fromJson(x)))
             : [],
       );
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'base_happiness': baseHappiness,
-        'capture_rate': captureRate,
-        'color': color?.toJson(),
-        'egg_groups': eggGroups.map((x) => x.toJson()).toList(),
-        'evolution_chain': evolutionChain?.toJson(),
-        'evolves_from_species': evolvesFromSpecies?.toJson(),
-        'flavor_text_entries': flavorTextEntries.map((x) => x.toJson()).toList(),
-        'form_descriptions': formDescriptions.map((x) => x.toJson()).toList(),
-        'form_switchtable': formsSwitchable,
-        'gender_rate': genderRate,
-        'genera': genera.map((x) => x.toJson()).toList(),
-        'generation': generation.toJson(),
-        'growth_rate': growthRate.toJson(),
-        'habitat': habitat?.toJson(),
-        'has_gender_differences': hasGenderDifferences,
-        'hatch_counter': hatchCounter,
-        'id': id,
-        'is_baby': isBaby,
-        'is_legendary': isLegendary,
-        'is_mythical': isMythical,
-        'name': name,
-        'names': names.map((x) => x.toJson()).toList(),
-        'order': order,
-        'pal_park_encounters': palParkEncounters.map((x) => x.toJson()).toList(),
-        'pokedex_numbers': pokedexNumbers.map((x) => x.toJson()).toList(),
-        'shape': shape?.toJson(),
-        'varieties': varieties.map((x) => x.toJson()).toList(),
-      };
 }
 
 class PokemonSpeciesResource extends NamedAPIResource<PokemonSpecies> {

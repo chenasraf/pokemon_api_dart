@@ -20,14 +20,6 @@ class PokemonType with ResourceBase {
       type: TypeResource.fromJson(json['type']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'slot': slot,
-      'type': type.toJson(),
-    };
-  }
 }
 
 class Type with ResourceBase {
@@ -75,22 +67,6 @@ class Type with ResourceBase {
       pokemon: (json['pokemon'] as List<dynamic>).map((e) => TypePokemon.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'damage_relations': damageRelations.toJson(),
-      'past_damage_relations': pastDamageRelations.map((e) => e.toJson()).toList(),
-      'game_indices': gameIndices.map((e) => e.toJson()).toList(),
-      'generation': generation.toJson(),
-      'names': names.map((e) => e.toJson()).toList(),
-      'move_damage_class': moveDamageClass.toJson(),
-      'moves': moves.map((e) => e.toJson()).toList(),
-      'pokemon': pokemon.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class TypeRelations with ResourceBase {
@@ -125,18 +101,6 @@ class TypeRelations with ResourceBase {
       doubleDamageFrom: (json['double_damage_from'] as List<dynamic>).map((e) => NamedAPIResource.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'no_damage_to': noDamageTo.map((e) => e.toJson()).toList(),
-      'half_damage_to': halfDamageTo.map((e) => e.toJson()).toList(),
-      'double_damage_to': doubleDamageTo.map((e) => e.toJson()).toList(),
-      'no_damage_from': noDamageFrom.map((e) => e.toJson()).toList(),
-      'half_damage_from': halfDamageFrom.map((e) => e.toJson()).toList(),
-      'double_damage_from': doubleDamageFrom.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class TypeRelationsPast with ResourceBase {
@@ -158,14 +122,6 @@ class TypeRelationsPast with ResourceBase {
       generation: NamedAPIResource.fromJson(json['generation']),
       damageRelations: TypeRelations.fromJson(json['damage_relations']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'generation': generation.toJson(),
-      'damage_relations': damageRelations.toJson(),
-    };
   }
 }
 
@@ -189,14 +145,6 @@ class TypePokemon with ResourceBase {
       pokemon: PokemonResource.fromJson(json['pokemon']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'slot': slot,
-      'pokemon': pokemon.toJson(),
-    };
-  }
 }
 
 class TypeResource extends NamedAPIResource<Type> {
@@ -208,14 +156,6 @@ class TypeResource extends NamedAPIResource<Type> {
       name: json['name'],
       rawData: json,
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'url': url,
-      'name': name,
-    };
   }
 
   @override

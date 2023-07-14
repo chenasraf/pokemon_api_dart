@@ -28,15 +28,6 @@ class PokemonAbility with ResourceBase {
       ability: AbilityResource.fromJson(json['ability']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'is_hidden': isHidden,
-      'slot': slot,
-      'ability': ability.toJson(),
-    };
-  }
 }
 
 class Ability with ResourceBase {
@@ -81,21 +72,6 @@ class Ability with ResourceBase {
       pokemon: json['pokemon'].map<AbilityPokemon>((e) => AbilityPokemon.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'is_main_series': isMainSeries,
-      'generation': generation.toJson(),
-      'names': names.map((e) => e.toJson()).toList(),
-      'effect_entries': effectEntries.map((e) => e.toJson()).toList(),
-      'effect_changes': effectChanges.map((e) => e.toJson()).toList(),
-      'flavor_text_entries': flavorTextEntries.map((e) => e.toJson()).toList(),
-      'pokemon': pokemon.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class AbilityPokemon with ResourceBase {
@@ -120,15 +96,6 @@ class AbilityPokemon with ResourceBase {
       slot: json['slot'],
       pokemon: PokemonResource.fromJson(json['pokemon']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'is_hidden': isHidden,
-      'slot': slot,
-      'pokemon': pokemon.toJson(),
-    };
   }
 }
 
@@ -155,15 +122,6 @@ class AbilityFlavorText with ResourceBase {
       versionGroup: NamedAPIResource.fromJson(json['version_group']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'flavor_text': flavorText,
-      'language': language.toJson(),
-      'version_group': versionGroup.toJson(),
-    };
-  }
 }
 
 class AbilityEffectChange with ResourceBase {
@@ -184,14 +142,6 @@ class AbilityEffectChange with ResourceBase {
       effectEntries: json['effect_entries'].map<VerboseEffect>((e) => VerboseEffect.fromJson(e)).toList(),
       versionGroup: NamedAPIResource.fromJson(json['version_group']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'effect_entries': effectEntries.map((e) => e.toJson()).toList(),
-      'version_group': versionGroup.toJson(),
-    };
   }
 }
 
@@ -218,15 +168,6 @@ class VerboseEffect with ResourceBase {
       language: NamedAPIResource.fromJson(json['language']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'effect': effect,
-      'short_effect': shortEffect,
-      'language': language.toJson(),
-    };
-  }
 }
 
 class AbilityResource extends NamedAPIResource<Ability> {
@@ -242,13 +183,6 @@ class AbilityResource extends NamedAPIResource<Ability> {
       name: json['name'],
       url: json['url'],
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-    };
   }
 
   @override

@@ -21,13 +21,5 @@ class PokemonTypePast with ResourceBase {
       types: json['types'].map<PokemonType>((e) => PokemonType.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'generation': generation.toJson(),
-      'types': types.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 

@@ -38,19 +38,6 @@ class Region with ResourceBase {
       versionGroups: json['version_groups'].map<NamedAPIResource>((e) => NamedAPIResource.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'locations': locations.map((e) => e.toJson()).toList(),
-      'names': names.map((e) => e.toJson()).toList(),
-      'main_generation': mainGeneration.toJson(),
-      'pokedexes': pokedexes.map((e) => e.toJson()).toList(),
-      'version_groups': versionGroups.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class RegionResource extends NamedAPIResource<Region> {

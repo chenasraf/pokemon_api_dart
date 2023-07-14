@@ -59,14 +59,5 @@ class MoveBattleStyle with ResourceBase {
       names: json['names'].map((e) => Name.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'names': names.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 

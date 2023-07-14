@@ -21,7 +21,7 @@ abstract class CacheManager {
     T Function(dynamic data)? onResult,
     int? retry,
   }) async {
-    final _retry = retry ?? 3;
+    final remainingRetries = retry ?? 3;
     Response? response;
     try {
       final mapper = onResult ?? ((data) => data);
@@ -34,8 +34,8 @@ abstract class CacheManager {
       add(key, response.data);
       return value;
     } catch (e, stack) {
-      if (_retry > 0) {
-        return getOne(key, onResult: onResult, retry: _retry - 1);
+      if (remainingRetries > 0) {
+        return getOne(key, onResult: onResult, retry: remainingRetries - 1);
       }
       remove(key);
       print('Error getting $key: $e.\nResponse: $response');

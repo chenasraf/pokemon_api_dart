@@ -21,11 +21,5 @@ class PokemonEntry with ResourceBase {
       pokemonSpecies: NamedAPIResource.fromJson(json['pokemon_species']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'entry_number': entryNumber,
-        'pokemon_species': pokemonSpecies.toJson(),
-      };
 }
 

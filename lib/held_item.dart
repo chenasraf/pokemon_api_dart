@@ -44,11 +44,5 @@ class PokemonHeldItemVersion with ResourceBase {
         version: NamedAPIResource.fromJson(json["version"]),
         rarity: json["rarity"],
       );
-
-  @override
-  Map<String, dynamic> toJson() => {
-        "version": version.toJson(),
-        "rarity": rarity,
-      };
 }
 

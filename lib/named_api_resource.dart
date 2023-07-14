@@ -11,23 +11,10 @@ class APIResource<T> with ResourceBase {
   });
 
   factory APIResource.fromJson(Map<String, dynamic> json) {
-    try {
-      return APIResource(
-        rawData: json,
-        url: json['url'],
-      );
-    } catch (e, stack) {
-      print('Error parsing APIResource: $e, json: $json');
-      print(stack);
-      rethrow;
-    }
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'url': url,
-    };
+    return APIResource(
+      rawData: json,
+      url: json['url'],
+    );
   }
 
   T mapper(dynamic data) {
@@ -53,25 +40,11 @@ class NamedAPIResource<T> extends APIResource<T> {
   });
 
   factory NamedAPIResource.fromJson(Map<String, dynamic> json) {
-    try {
-      return NamedAPIResource(
-        rawData: json,
-        name: json['name'],
-        url: json['url'],
-      );
-    } catch (e, stack) {
-      print('Error parsing NamedAPIResource: $e, json: $json');
-      print(stack);
-      rethrow;
-    }
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'url': url,
-    };
+    return NamedAPIResource(
+      rawData: json,
+      name: json['name'],
+      url: json['url'],
+    );
   }
 }
 

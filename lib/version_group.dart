@@ -41,20 +41,6 @@ class VersionGroup with ResourceBase {
       rawData: json,
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'order': order,
-      'generation': generation.toJson(),
-      'move_learn_methods': moveLearnMethods.map((e) => e.toJson()).toList(),
-      'pokedexes': pokedexes.map((e) => e.toJson()).toList(),
-      'regions': regions.map((e) => e.toJson()).toList(),
-      'versions': versions.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class VersionGroupResource extends NamedAPIResource<VersionGroup> {

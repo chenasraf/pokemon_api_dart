@@ -35,18 +35,6 @@ class Location with ResourceBase {
       gameIndices: json['game_indices'].map<GenerationGameIndex>((e) => GenerationGameIndex.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'names': names.map((e) => e.toJson()).toList(),
-      'region': region.toJson(),
-      'areas': areas.map((e) => e.toJson()).toList(),
-      'game_indices': gameIndices.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class LocationResource extends NamedAPIResource<Location> {

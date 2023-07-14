@@ -45,19 +45,4 @@ class Nature with ResourceBase {
       names: json['names'].map((e) => Name.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'decreased_stat': decreasedStat.toJson(),
-      'increased_stat': increasedStat.toJson(),
-      'hates_flavor': hatesFlavor.toJson(),
-      'likes_flavor': likesFlavor.toJson(),
-      'pokeathlon_stat_changes': pokeathlonStatChanges.map((e) => e.toJson()).toList(),
-      'move_battle_style_preferences': moveBattleStylePreferences.map((e) => e.toJson()).toList(),
-      'names': names.map((e) => e.toJson()).toList(),
-    };
-  }
 }

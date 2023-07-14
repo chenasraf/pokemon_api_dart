@@ -15,6 +15,6 @@ mixin ResourceBase {
     return '$runtimeType${toJson()}';
   }
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => rawData;
 }
 

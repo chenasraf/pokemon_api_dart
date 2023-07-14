@@ -34,18 +34,6 @@ class Language with ResourceBase {
       names: json['names'].map((e) => Name.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'official': official,
-      'iso639': iso639,
-      'iso3166': iso3166,
-      'names': names.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class LanguageResource extends NamedAPIResource<Language> {

@@ -24,13 +24,6 @@ class FlavorText with ResourceBase {
       version: NamedAPIResource.fromJson(json['version']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'flavor_text': flavorText,
-        'language': language.toJson(),
-        'version': version.toJson(),
-      };
 }
 
 class MoveFlavorText with ResourceBase {
@@ -56,11 +49,4 @@ class MoveFlavorText with ResourceBase {
       versionGroup: NamedAPIResource.fromJson(json['version_group']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'flavor_text': flavorText,
-        'language': language.toJson(),
-        'version_group': versionGroup.toJson(),
-      };
 }

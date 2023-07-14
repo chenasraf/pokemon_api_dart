@@ -21,11 +21,5 @@ class PokemonSpeciesVariety with ResourceBase {
       pokemon: PokemonResource.fromJson(json['pokemon']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'is_default': isDefault,
-        'pokemon': pokemon.toJson(),
-      };
 }
 

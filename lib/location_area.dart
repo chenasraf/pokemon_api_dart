@@ -63,16 +63,6 @@ class LocationArea with ResourceBase {
           json['encounter_method_rates'].map<EncounterMethodRate>((e) => EncounterMethodRate.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'game_index': gameIndex,
-      'location': location.toJson(),
-      'names': names.map((e) => e.toJson()).toList(),
-      'pokemon_encounters': pokemonEncounters.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class PokemonLocationAreaResource extends APIResource<List<PokemonLocationArea>> {

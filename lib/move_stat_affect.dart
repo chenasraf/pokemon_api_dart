@@ -22,14 +22,6 @@ class MoveStatAffectSets with ResourceBase {
       decrease: json['decrease'].map((e) => MoveStatAffect.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'increase': increase.map((e) => e.toJson()).toList(),
-      'decrease': decrease.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class MoveStatAffect with ResourceBase {
@@ -51,13 +43,5 @@ class MoveStatAffect with ResourceBase {
       change: json['change'],
       move: MoveResource.fromJson(json['move']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'change': change,
-      'move': move.toJson(),
-    };
   }
 }

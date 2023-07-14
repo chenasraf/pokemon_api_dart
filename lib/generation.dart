@@ -43,19 +43,6 @@ class Generation with ResourceBase {
       versionGroups: json['version_groups'].map((e) => NamedAPIResource.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'abilities': abilities.map((e) => e.toJson()).toList(),
-        'names': names.map((e) => e.toJson()).toList(),
-        'main_region': mainRegion.toJson(),
-        'moves': moves.map((e) => e.toJson()).toList(),
-        'pokemon_species': pokemonSpecies.map((e) => e.toJson()).toList(),
-        'types': types.map((e) => e.toJson()).toList(),
-        'version_groups': versionGroups.map((e) => e.toJson()).toList(),
-      };
 }
 
 class GenerationResource extends NamedAPIResource<Generation> {

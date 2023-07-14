@@ -40,16 +40,5 @@ class Pokedex with ResourceBase {
       versionGroups: json['version_groups'].map((e) => NamedAPIResource.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'descriptions': descriptions.map((e) => e.toJson()).toList(),
-        'names': names.map((e) => e.toJson()).toList(),
-        'region': region.toJson(),
-        'pokemon_entries': pokemonEntries.map((e) => e.toJson()).toList(),
-        'version_groups': versionGroups.map((e) => e.toJson()).toList(),
-      };
 }
 

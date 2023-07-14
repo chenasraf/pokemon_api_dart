@@ -21,11 +21,5 @@ class PokedexNumber with ResourceBase {
       pokedex: NamedAPIResource.fromJson(json['pokedex']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() => {
-        'entry_number': entryNumber,
-        'pokedex': pokedex.toJson(),
-      };
 }
 

@@ -31,15 +31,4 @@ class Characteristic with ResourceBase {
       highestStat: NamedAPIResource.fromJson(json['highest_stat']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'gene_modulo': geneModulo,
-      'possible_values': possibleValues,
-      'descriptions': descriptions.map((e) => e.toJson()).toList(),
-      'highest_stat': highestStat.toJson(),
-    };
-  }
 }

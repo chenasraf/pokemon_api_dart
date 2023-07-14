@@ -113,30 +113,6 @@ class Pokemon with ResourceBase {
       types: json['types'].map<PokemonType>((e) => PokemonType.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'id': id,
-      'height': height,
-      'weight': weight,
-      'is_default': isDefault,
-      'order': order,
-      'abilities': abilities,
-      'base_experience': baseExperience,
-      'forms': forms.map((e) => e.toJson()).toList(),
-      'game_indices': gameIndices.map((e) => e.toJson()).toList(),
-      'held_items': heldItems.map((e) => e.toJson()).toList(),
-      'location_area_encounters': locationAreaEncounters.url,
-      'moves': moves.map((e) => e.toJson()).toList(),
-      'past_types': pastTypes.map((e) => e.toJson()).toList(),
-      'sprites': sprites.toJson(),
-      'species': species.toJson(),
-      'stats': stats.map((e) => e.toJson()).toList(),
-      'types': types.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class PokemonResource extends NamedAPIResource<Pokemon> {

@@ -169,14 +169,6 @@ class EncounterMethodRate with ResourceBase {
           json['version_details'].map<EncounterVersionDetails>((e) => EncounterVersionDetails.fromJson(e)).toList(),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'encounter_method': encounterMethod.toJson(),
-      'version_details': versionDetails.map((e) => e.toJson()).toList(),
-    };
-  }
 }
 
 class EncounterVersionDetails with ResourceBase {
@@ -200,14 +192,6 @@ class EncounterVersionDetails with ResourceBase {
       rate: json['rate'],
       version: NamedAPIResource.fromJson(json['version']),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'rate': rate,
-      'version': version.toJson(),
-    };
   }
 }
 

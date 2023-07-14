@@ -29,15 +29,6 @@ class PokemonStat with ResourceBase {
       stat: NamedAPIResource.fromJson(json['stat']),
     );
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'base_stat': baseStat,
-      'effort': effort,
-      'stat': stat.toJson(),
-    };
-  }
 }
 
 class Stat with ResourceBase {
@@ -80,21 +71,6 @@ class Stat with ResourceBase {
       affectingNatures: NatureStatAffectSets.fromJson(json['affecting_natures']),
       characteristics: json['characteristics'].map((e) => Characteristic.fromJson(e)).toList(),
     );
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'game_index': gameIndex,
-      'is_battle_only': isBattleOnly,
-      'move_damage_class': moveDamageClass.toJson(),
-      'names': names.map((e) => e.toJson()).toList(),
-      'affecting_moves': affectingMoves.toJson(),
-      'affecting_natures': affectingNatures.toJson(),
-      'characteristics': characteristics.map((e) => e.toJson()).toList(),
-    };
   }
 }
 
